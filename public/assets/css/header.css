@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Varela+Round&display=swap');
+
+body {
+    font-family: 'Varela Round', sans-serif;
+}
+
+img {
+    max-width: 150px;
+    width: 100%;
+}
+
+.nav-link{
+    font-weight: 600;
+    color: #A66E38;
+}
+
+.navbar{
+    background-color: #FFF3CF;
+}
+
+.offcanvas-end {
+    background-color: #FFF3CF !important;
+}
+
+.navbar .nav-link {
+    color: #A66E38 !important; 
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar .dropdown-item {
+    color: #A66E38 !important;
+}
+
+.navbar .nav-link:hover{
+    color: #705338 !important;
+}
+
+.navbar .nav-link.active:hover{
+    color: #705338 !important;
+}
+.navbar .dropdown-item:hover {
+    color: #705338 !important; 
+    background-color: #FFF3CF;
+}
+
+.dropdown-menu {
+    background-color: #FFF3CF !important;
+}
+
+.navbar .nav-link.active {
+    color: #A66E38 !important; /* Your active link color */
+    font-weight: bold;
+}
