@@ -12,5 +12,7 @@
     @include('layout.header')
 
     @yield('content')
+
+    @stack('styles')
 </body>
 </html>
