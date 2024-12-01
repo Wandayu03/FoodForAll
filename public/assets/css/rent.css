@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monda:wght@400..700&family=Shrikhand&display=swap');
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 360px;
+    background-position: center;
+    background-size: cover;
+}
+
+.hero .color {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #69533E;
+    opacity: 38%;
+}
+
+.hero p {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 2.3rem;
+    font-family: "Shrikhand", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.banner {
+    height: 9rem;
+    background: linear-gradient(to right, #A66E38, #637A9F);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner p {
+    margin: 0;
+    color: white;
+    font-size: 1.7rem;
+    font-family: "Monda", sans-serif;
+    font-weight: 900;
+    text-align: center;
+    max-width: 76%;
+}
+
+.order-detail{
+    background-color: #F8F9F9;
+    margin: 3.5rem 7rem;
+    border-radius: 38px;
+    box-shadow: 2.5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.order-detail-title{
+    font-size: 1.6rem;
+    font-weight: 600;
+    position: relative;
+    top: 2.5rem;
+    left: 4.5rem;
+}
+
+.order-detail-all{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4rem;
+    gap: 3rem;
+    align-items: stretch;
+    height: 370px;
+}
+
+.order-detail-left{
+    background-color: white;
+    border-radius: 20px;
+    width: 40%;
+    height: 100%;
+    box-shadow:1.5px 3px rgba(0, 0, 0, 0.1);
+}
+
+.order-detail-right{
+    width: 40%;
+    height: 100%;
+}
+
+.program-name input, .type-of-food input, .number-of-servings input{
+    margin-top: -5px;
+    margin-bottom: 30px;
+}
+
+.detail{
+    margin-left: 2.8rem;
+    margin-top: 1.8rem;
+}
+
+.vertical-divider {
+    width: 0;
+    border-left: 3px solid #637A9F;
+    height: 100%;
+    background-color: #637A9F;
+}
+
+input{
+    margin-bottom: 10px;
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #c5c5c5;
+    border-radius: 8px;
+    outline-color: #E8C872;
+    background-color: #e5e5e5;
+}
+
+.budget-donation, .distribution-date, .distribution-location {
+    background-color: white;
+    border-radius: 20px;
+    width: 100%;
+    height: 7rem;
+    box-shadow: 1.5px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 2.2rem;
+}
+
+.budget-donation, .distribution-date{
+    margin-bottom: 1rem;
+}
+
+.budget-donation p, .distribution-date p, .distribution-location p {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+    align-self: flex-start;
+}
+
+.budget-donation input, .distribution-date input, .distribution-location input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #c5c5c5;
+    border-radius: 8px;
+    outline-color: #E8C872;
+    background-color: #dfdfdf;
+    margin-top: 0.5rem;
+    align-self: center;
+}
+
+.continue-process-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.continue-process {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 250px;
+    background-color: #637A9F;
+    color: white;
+    border-radius: 10px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
