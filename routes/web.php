@@ -13,3 +13,7 @@ Route::get('/rent/for/sharing', function () {
 Route::get('/donate', function () {
     return view('donate');
 });
+
+Route::get('/about', function () {
+    return view('about');
+});
