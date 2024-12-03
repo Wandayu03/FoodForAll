@@ -9,3 +9,7 @@ Route::get('/', function () {
 Route::get('/rent/for/sharing', function () {
     return view('rent');
 });
+
+Route::get('/about', function () {
+    return view('about');
+});
