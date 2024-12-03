@@ -5,7 +5,7 @@
 @section('content')
 <div>
     <div class="hero" style="background-image: url('{{ asset('assets/img/Hero-RentPage.png') }}')">
-    <div class="color"></div>
+        <div class="color"></div>
         <p>Every Contribution <span>Makes a Difference.</span></p>
     </div>
     <div class="banner">
@@ -48,7 +48,7 @@
         </div>
         <div class="continue-process-wrapper">
             <div class="continue-process">
-                Continue Process
+                <a href="">Continue Process</a>
             </div>
         </div>
     </div>

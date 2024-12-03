@@ -9,5 +9,5 @@ CSS kalian masukin ke master.blade.php, dan karena itu CSS nya digabung, sebisa 
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/custom.css') }}"> // Tarok link CSS kelen disini
+<link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}"> // Tarok link CSS kelen disini
 @endpush

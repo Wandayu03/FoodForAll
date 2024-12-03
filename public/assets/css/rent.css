@@ -173,10 +173,14 @@ input {
     height: 50px;
     width: 250px;
     background-color: #637a9f;
-    color: white;
     border-radius: 10px;
     font-size: 1.4rem;
     font-weight: 600;
     margin-top: 3rem;
     margin-bottom: 3rem;
+}
+
+.continue-process a{
+    text-decoration: none;
+    color: white;
 }
