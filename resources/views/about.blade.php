@@ -1,5 +1,5 @@
 @extends('layout.master')
-<link rel="stylesheet" href="{{ asset('assets/css/about.css') }}">
+
 @section('title', 'About')
 
 @section('content')
@@ -47,4 +47,6 @@
 </div>
 @endsection
 
-
+@push('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/about.css') }}">
+@endpush
