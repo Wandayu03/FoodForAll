@@ -16,7 +16,7 @@
         <div class="right d-flex flex-column">
             <p><b>Need Help?</b></p>
             <p>Visit the page below:</p>
-            <p>Support and FAQ</p>
+            <p><a href={{ route('support') }}>Support and FAQ</a></p>
         </div>
     </div>
 </div>

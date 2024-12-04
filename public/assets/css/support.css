@@ -1,0 +1,87 @@
+.support {
+    background-color: #fff3cf;
+}
+
+.support-form,
+.faq {
+    max-width: 85vw;
+    margin: 0 auto;
+    padding: 3.5rem;
+}
+
+.support a,
+.support a:hover {
+    color: black;
+}
+
+.support-form h2,
+.support-form p {
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+.support-form form {
+    max-width: 70%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 2.5rem 4rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.support-form input,
+.support-form textarea {
+    border-radius: 1rem;
+    background-color: #eeeeee;
+    border: none;
+    padding: 0.7rem;
+    margin: 0.5rem 0;
+}
+
+.support-form input:focus,
+.support-form textarea:focus {
+    outline: none;
+}
+
+.support-form textarea {
+    height: 10rem;
+    resize: none;
+}
+
+.support-form button {
+    width: 20%;
+    min-width: 100px;
+    margin-top: 1rem;
+    background-color: #637a9f;
+    padding: 0.7rem;
+    color: white;
+    border: none;
+    border-radius: 1rem;
+}
+
+.accordion-button.collapsed {
+    background-color: #f8f9fa;
+    border-color: #ddd;
+}
+
+.accordion-item .accordion-button:not(.collapsed) {
+    background-color: #fff3cf !important;
+    color: #637a9f;
+}
+
+.accordion-button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.faq h3 {
+    padding-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .support-form form {
+        max-width: 90%;
+        padding: 2rem 2rem;
+    }
+}

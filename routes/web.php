@@ -17,3 +17,7 @@ Route::get('/donate', function () {
 Route::get('/about', function () {
     return view('about');
 });
+
+Route::get('/support', function () {
+    return view('support');
+})->name('support');

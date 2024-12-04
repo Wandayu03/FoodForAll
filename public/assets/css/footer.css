@@ -32,6 +32,14 @@
     flex: 1;
 }
 
+.right a {
+    color: white;
+}
+
+.right a:hover {
+    color: white;
+}
+
 @media (max-width: 768px) {
     .left {
         text-align: left;
