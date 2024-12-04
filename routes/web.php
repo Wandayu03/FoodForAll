@@ -10,6 +10,7 @@ Route::get('/rent/for/sharing', function () {
     return view('rent');
 });
 
+<<<<<<< HEAD
 Route::get('/home', function () {
     return view('home');
 });
@@ -21,3 +22,16 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('register');
 });
+=======
+Route::get('/donate', function () {
+    return view('donate');
+});
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/support', function () {
+    return view('support');
+})->name('support');
+>>>>>>> 044430c166bb84e4577ed3b5cfe2fb488f073fd1
