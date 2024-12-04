@@ -184,3 +184,168 @@ input {
     text-decoration: none;
     color: white;
 }
+
+@media (max-width: 1024px) {
+    .hero {
+        height: 300px;
+    }
+
+    .hero p {
+        font-size: 2rem;
+        bottom: 1rem;
+        right: 2rem;
+    }
+
+    .banner {
+        height: 8rem;
+    }
+
+    .banner p {
+        font-size: 1.5rem;
+        max-width: 80%;
+    }
+
+    .order-detail {
+        margin: 3rem 5rem;
+    }
+
+    .order-detail-title {
+        font-size: 1.4rem;
+        top: 2rem;
+        left: 4rem;
+    }
+
+    .order-detail-all {
+        flex-direction: column; 
+        gap: 2rem;
+        height: auto; 
+    }
+
+    .order-detail-left,
+    .order-detail-right {
+        width: 90%;
+        height: auto; 
+    }
+
+    input {
+        width: 95%; 
+    }
+
+    .budget-donation,
+    .distribution-date,
+    .distribution-location {
+        height: auto;
+    }
+
+    .continue-process {
+        width: 200px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: 250px;
+    }
+
+    .hero p {
+        font-size: 1.8rem;
+        right: 1.5rem;
+    }
+
+    .banner {
+        height: 7rem;
+    }
+
+    .banner p {
+        font-size: 1.4rem;
+        max-width: 85%;
+    }
+
+    .order-detail {
+        margin: 2.5rem 3rem;
+    }
+
+    .order-detail-title {
+        font-size: 1.2rem;
+        left: 3rem;
+    }
+
+    .order-detail-all {
+        gap: 1.5rem;
+    }
+
+    .budget-donation p,
+    .distribution-date p,
+    .distribution-location p {
+        font-size: 0.9rem;
+    }
+
+    .continue-process {
+        width: 180px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        height: 200px;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    .banner {
+        height: 6rem;
+    }
+
+    .banner p {
+        font-size: 0.8rem;
+    }
+
+    .order-detail {
+        margin: 2rem 1.5rem;
+    }
+
+    .order-detail-title {
+        font-size: 1rem;
+        left: 2rem;
+    }
+
+    .order-detail-all {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .order-detail-left,
+    .order-detail-right {
+        width: 100%;
+    }
+
+    .budget-donation,
+    .distribution-date,
+    .distribution-location {
+        padding: 0 1rem;
+    }
+
+    .budget-donation input,
+    .distribution-date input,
+    .distribution-location input {
+        width: 100%;
+    }
+
+    .continue-process {
+        width: 150px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+
+    .continue-process a {
+        font-size: 0.9rem;
+    }
+}
