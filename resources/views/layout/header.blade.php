@@ -37,12 +37,24 @@
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4 dropdown">
                         <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="ms-1">User</span>
+                            <span class="ms-1">Register</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                            <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                        @guest
+                            <li><a class="dropdown-item" href="#">Login</a></li>
+                        @endguest
+                        @auth
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
+                        @endauth
                         </ul>
                       </li>
                 </ul>
