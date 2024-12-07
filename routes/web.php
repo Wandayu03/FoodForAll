@@ -33,3 +33,19 @@ Route::get('/about', function () {
 Route::get('/support', function () {
     return view('support');
 })->name('support');
+
+Route::get('/history', function () {
+    return view('history');
+});
+
+Route::get('/more1', function () {
+    return view('more1');
+});
+
+Route::get('/more2', function () {
+    return view('more2');
+});
+
+Route::get('/proof', function () {
+    return view('proof');
+});
