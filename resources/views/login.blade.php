@@ -41,7 +41,7 @@
         
                     </div>
                     <div class="signin">
-                        <span>Do not have an account? <a href="#">Register</a></span>
+                        <span>Do not have an account? <a href="{{ route('register') }}">Register</a></span>
                     </div>
                 </div>
             </div>

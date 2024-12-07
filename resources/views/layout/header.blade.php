@@ -14,26 +14,26 @@
                 </button>
                 <ul class="navbar-nav ms-lg-auto p-4 p-lg-0">
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4">
-                        <a class="nav-link active" aria-current="page" href="#">About</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('about') }}">About</a>
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4 dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Contribute
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Donate</a></li>
+                            <li><a class="dropdown-item" href="{{ route('donate') }}">Donate</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Rent For Sharing</a></li>
+                            <li><a class="dropdown-item" href="{{ route('RentForSharing') }}">Rent For Sharing</a></li>
                         </ul>
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4">
                         <a class="nav-link active" aria-current="page" href="#">History</a>
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4">
-                        <a class="nav-link active" aria-current="page" href="#">Contact</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('support') }}">Contact</a>
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4 dropdown">
                         <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -41,7 +41,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                         @guest
-                            <li><a class="dropdown-item" href="#">Login</a></li>
+                            <li><a class="dropdown-item" href="{{ route('register') }}">Register</a></li>
                         @endguest
                         @auth
                             <li><hr class="dropdown-divider"></li>

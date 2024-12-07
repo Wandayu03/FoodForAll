@@ -97,8 +97,9 @@
 }
 
 .icon {
-    margin-bottom: 10px; 
-    
+    margin-bottom: 10px;  
+    height: 100px;
+    width: 130px;
 }
   
 .card {
@@ -236,6 +237,13 @@
     cursor: pointer;
     font-weight: 800;
     font-style: normal;
+}
+
+span a{
+    font-family: "Baloo 2", sans-serif;
+    font-size: 20px;
+    color: #705338;
+    text-decoration: none;
 }
   
 .button img {

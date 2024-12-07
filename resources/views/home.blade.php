@@ -10,7 +10,7 @@
             <h1>Make a Big Change</h1>
             <h2>We are ready to provide better service to make world happy</h2>
             <div class="mt-4">
-                <a href="#donate" class="btn btn-primary btn-lg">Donate Now</a>
+                <a href="{{ route('donate') }}" class="btn btn-primary btn-lg">Donate Now</a>
             </div>
           </div>
           <div class="col">
@@ -28,7 +28,7 @@
                 Your generosity helps fight hunger and provides relief to underserved communities. Whether it's a warm meal or surplus food that can still nourish, every donation counts. Together, we can build a more caring and sustainable society.
                 Ready to give?
                 </p>
-                <a href="#">Explore how you can contribute and be part of the change!</a>
+                <a href="{{ route('donate') }}">Explore how you can contribute and be part of the change!</a>
               </div>
               <div class="card">
                 <img class="icon" src="assets/img/imageRentForSharing.png" alt="Icon 2">
@@ -38,7 +38,7 @@
                 Your contribution enables us to deliver meals and essentials to underserved communities. By letting us manage the process, you save time while still making a meaningful impact. Together, we can spread care and kindness effortlessly.
                 Ready to share?
                 </p>
-                <a href="#">Discover how you can support others through our seamless service!</a>
+                <a href="{{ route('RentForSharing') }}">Discover how you can support others through our seamless service!</a>
               </div>
             </div>
             <div class="header">
@@ -60,7 +60,7 @@
                 </p>
                 <div class="cta">
                   <div class="button">
-                    <span>More About Us</span>
+                    <span><a href="{{ route('about') }}">More About Us </a></span>
                   </div>
                 </div>
               </div>
