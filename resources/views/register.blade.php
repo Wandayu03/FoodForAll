@@ -23,30 +23,32 @@
             <div class="col-md-6 right">
                 <div class="input-box">
                     <header>Registration</header>
-                    <div class="input-field">
-                        <input type="text" class="input" id="name" required autocomplete="off">
-                        <label for="name">Name</label>
-                    </div>
-                    <div class="input-field">
-                        <input type="text" class="input" id="email" required autocomplete="off">
-                        <label for="email">Email</label>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" class="input" id="password" required>
-                        <label for="password">Password</label>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" class="input" id="conPassword" required>
-                        <label for="conPassword">Confirmation Password</label>
-                    </div>
-                    <div class="cekb">
-                        <input type="checkbox" class="cek" id="checkbox" required>
-                        <label for="cekbok">I accept <u>terms and condition</u></label>
-                    </div>
-                    <div class="input-field">
-                        <input type="submit" class="submit" value="Register">
-        
-                    </div>
+                    <form action="{{ url('register') }}" method="POST">
+                        @csrf
+                        <div class="input-field">
+                            <input type="text" class="input" name="name" required autocomplete="off">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="email" class="input" name="email" required autocomplete="off">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" class="input" name="password" required>
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" class="input" name="conPassword" required>
+                            <label for="conPassword">Confirmation Password</label>
+                        </div>
+                        <div class="cekb">
+                            <input type="checkbox" class="cek" name="terms" required>
+                            <label for="cekbok">I accept <u>terms and condition</u></label>
+                        </div>
+                        <div class="input-field">
+                            <input type="submit" class="submit" value="Register">       
+                        </div>
+                    </form>
                     <div class="signin">
                         <span>Already have an account? <a href="{{ route('login') }}">Log in</a></span>
                     </div>

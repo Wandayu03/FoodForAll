@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
 
 // Route::get('/', function () {
 //     return view('template');
@@ -49,3 +50,6 @@ Route::get('/more2', function () {
 Route::get('/proof', function () {
     return view('proof');
 });
+
+Route::get('register', [RegisterController::class, 'showRegistForm'])->name('register');
+Route::post('register', [RegisterController::class, 'register']);
