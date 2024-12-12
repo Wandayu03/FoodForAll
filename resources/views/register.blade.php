@@ -23,6 +23,12 @@
             <div class="col-md-6 right">
                 <div class="input-box">
                     <header>Registration</header>
+                    @if ($errors->any())
+                    <div style="background-color: #fff3cf; padding: 0.5rem; border-radius: 0.5rem">
+                        @foreach ($errors->all() as $error)
+                       <span style="color: black">{{$error}}</span> 
+                    @endforeach</div><br>
+                    @endif
                     <form action="{{ url('register') }}" method="POST">
                         @csrf
                         <div class="input-field">

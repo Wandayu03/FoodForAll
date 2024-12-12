@@ -19,27 +19,35 @@
                 <div class="input-box">
                     <header>Welcome Back!</header>
                     <h1>Hey, Enter your detail to get sign into your account</h1>
-                    <div class="input-field">
-                        <input type="text" class="input" id="email" required autocomplete="off">
-                        <label for="email">Email</label>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" class="input" id="password" required>
-                        <label for="password">Password</label>
-                    </div>
-                    <div class="forgot">
-                        <a href="#">Forgot Password or Email?</a>
-                    </div>
-                    <br>
-                    <div class="cekb">
-                        <input type="checkbox" class="cek" id="checkbox" required>
-                        <label for="cekbok"><u>Remember Me?</u></label>
-                    </div>
-                    <br>
-                    <div class="input-field">
-                        <input type="submit" class="submit" value="Login">
-        
-                    </div>
+                    @if ($errors->any())
+                        <div style="background-color: #e8c872; padding: 0.5rem; border-radius: 0.5rem">
+                            @foreach ($errors->all() as $error)
+                           <span >{{$error}}</span> 
+                        @endforeach</div><br>
+                    @endif
+                    <form action="{{ url('login') }}" method="POST">
+                        @csrf
+                        <div class="input-field">
+                            <input type="email" class="input" id="email" name="email" required autocomplete="off">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" class="input" id="password" name="password" required>
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="forgot">
+                            <a href="#">Forgot Password or Email?</a>
+                        </div>
+                        <br>
+                        <div class="cekb">
+                            <input type="checkbox" class="cek" id="checkbox" required>
+                            <label for="cekbok"><u>Remember Me?</u></label>
+                        </div>
+                        <br>
+                        <div class="input-field">
+                            <input type="submit" class="submit" value="Login">
+                        </div>
+                    </form>
                     <div class="signin">
                         <span>Do not have an account? <a href="{{ route('register') }}">Register</a></span>
                     </div>
