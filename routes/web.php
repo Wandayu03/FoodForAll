@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DonationController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -25,6 +26,9 @@ Route::get('/register', function () {
 Route::get('/donate', function () {
     return view('donate');
 })->name('donate');
+
+Route::post('/donate', [DonationController::class, 'store'])->name('donations.create');
+
 
 Route::get('/about', function () {
     return view('about');

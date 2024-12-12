@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('historys', function (Blueprint $table) {
+        Schema::create('history', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('payments_id')->constrained()->onDelete('cascade'); // Relasi dengan payments
-            $table->enum('status', ['in-progress', 'completed', 'failed']);
-            $table->text('description')->nullable(); // Deskripsi status
+            $table->foreignId('payments_id')->constrained('payments')->onDelete('cascade'); 
+            $table->foreignId('rent_id')->constrained('rents')->onDelete('cascade');
+            $table->enum('status', ['pending','in-progress', 'completed', 'failed'])->default('pending');
+            $table->text('description')->nullable(); 
             $table->timestamps();
         });
     }

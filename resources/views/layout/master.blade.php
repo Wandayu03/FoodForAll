@@ -17,6 +17,8 @@
 
     @stack('styles')
 
+    @stack('scripts')
+
     @include('layout.footer')
 </body>
 </html>

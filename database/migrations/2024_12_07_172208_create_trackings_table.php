@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tracking_updates', function (Blueprint $table) {
+        Schema::create('trackings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('historys_id')->constrained(); // Relasi dengan history
-            $table->string('status');
-            $table->text('description')->nullable(); // Deskripsi pembaruan status
-            $table->string('photo_url')->nullable();  // Foto yang diupload admin
+            $table->foreignId('history_id')->constrained('history'); 
+            $table->enum('status', ['Donation accepted', 'Order in process', 'Food is ready', 'Food has been distributed', 
+            'Process is complete'])->default('Donation accepted');
+            $table->text('description')->nullable(); 
+            $table->string('photo_url')->nullable();  
             $table->timestamps();
         });
     }
