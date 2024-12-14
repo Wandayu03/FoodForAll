@@ -40,7 +40,7 @@
             <!-- submit donasi -->
             <div class="continue-payment-wrapper">
                 <div class="continue-payment">
-                    <a href="">Continue Payment</a> 
+                    <input type="submit" class="submit" value="Continue Process">
                 </div>
             </div>
         </form>
