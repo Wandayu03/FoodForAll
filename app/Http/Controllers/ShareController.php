@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RentModel;
+use App\Models\Share;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RentController extends Controller
+class ShareController extends Controller
 {
     public function store(Request $request){
         $request->validate([
@@ -18,7 +18,7 @@ class RentController extends Controller
             'distribution_address' => 'required|string|max:255',
         ]);
 
-        $rent = RentModel::create([
+        $share = Share::create([
             'event_name' => $request->input('event_name'),
             'food_type' => $request->input('food_type'),
             'estimated_people' => $request->input('estimated_people'),
@@ -29,6 +29,8 @@ class RentController extends Controller
             'user_id' => Auth::id(), // Menyimpan ID pengguna yang sedang login
         ]);
 
-        return redirect()->route('payment.process', ['rent' => $rent->id]);
+        // return redirect()->intended('/');
+
+        return redirect()->route('payment.process', ['share' => $share->id]);
     }
 }

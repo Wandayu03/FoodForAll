@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DonationModel;
+use App\Models\Donation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +20,7 @@ class DonationController extends Controller
             return back()->withErrors(['amount' => 'Please enter an amount of at least Rp 10,000.']);
         }
 
-        $donation = DonationModel::create([
+        $donation = Donation::create([
             'user_id' => Auth::id(), // Isi dengan ID pengguna yang sedang login
             'amount' => $validated['amount'],
             'status' => 'pending',

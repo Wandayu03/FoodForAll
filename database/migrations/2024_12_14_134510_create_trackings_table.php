@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('trackings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('history_id')->constrained('history'); 
+            $table->foreignId('history_id'); 
             $table->enum('status', ['Donation accepted', 'Order in process', 'Food is ready', 'Food has been distributed', 
             'Process is complete'])->default('Donation accepted');
             $table->text('description')->nullable(); 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tracking_update');
+        Schema::dropIfExists('trackings');
     }
 };

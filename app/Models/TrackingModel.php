@@ -8,6 +8,6 @@ class Tracking_UpdateModel extends Model
 {
     public function history()
     {
-        return $this->belongsTo(HistoryModel::class);
+        return $this->belongsTo(History::class);
     }
 }

@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('donations', function (Blueprint $table) {
+        Schema::create('histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained(); // Relasi dengan users
-            $table->decimal('amount', 10, 2); // Jumlah uang yang didonasikan
+            $table->foreignId('payments_id')->onDelete('cascade'); 
+            $table->foreignId('rent_id')->onDelete('cascade');
+            $table->enum('status', ['pending','in-progress', 'completed', 'failed'])->default('pending');
+            $table->text('description')->nullable(); 
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('donation');
+        Schema::dropIfExists('histories');
     }
 };

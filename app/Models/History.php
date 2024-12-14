@@ -4,15 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HistoryModel extends Model
+class History extends Model
 {
+    //
     public function payments()
     {
-        return $this->belongsTo(PaymentModel::class);
+        return $this->belongsTo(Payment::class);
     }
 
     public function trackingUpdates()
     {
-        return $this->hasMany(Tracking_UpdateModel::class);
+        return $this->hasMany(Tracking::class);
     }
 }

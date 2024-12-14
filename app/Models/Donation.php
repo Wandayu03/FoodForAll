@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DonationModel extends Model
+class Donation extends Model
 {
+    //
     protected $fillable=['user_id','amount', 'status'];
 
     public function user()
@@ -15,6 +16,6 @@ class DonationModel extends Model
 
     public function payment()
     {
-        return $this->hasOne(PaymentModel::class);
+        return $this->hasOne(Payment::class);
     }
 }

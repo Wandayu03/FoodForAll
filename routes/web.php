@@ -4,14 +4,17 @@ use App\Http\Controllers\DonationController;
 use App\Http\Controllers\LoginControleer;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RentController;
+use App\Http\Controllers\ShareController;
 
 // Route::get('/', function () {
 //     return view('template');
 // });
 
-Route::get('/rent/for/sharing', function () {
-    return view('rent');
+Route::get('/share-a-meal', function () {
+    return view('share');
 })->name('RentForSharing')->middleware('auth');
+Route::post('/share-a-meal', [ShareController::class, 'store'])->name('share.create');
 
 Route::get('/', function () {
     return view('home');
@@ -20,15 +23,12 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('login');
 })->name('login')->middleware('guest');
-
 Route::post('/login', [LoginControleer::class, 'login']);
-
 Route::get('/logout', [LoginControleer::class, 'logout'])->name('logout');
 
 Route::get('/donate', function () {
     return view('donate');
 })->name('donate');
-
 Route::post('/donate', [DonationController::class, 'store'])->name('donations.create');
 
 Route::get('/about', function () {
