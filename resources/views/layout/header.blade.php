@@ -37,18 +37,23 @@
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4 dropdown">
                         <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="ms-1">Register</span>
+                            <span class="ms-1">
+                            @auth
+                                {{ Auth::user()->name }} 
+                            @else
+                                Register
+                            @endauth
+                            </span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                         @guest
                             <li><a class="dropdown-item" href="{{ route('register') }}">Register</a></li>
                         @endguest
                         @auth
-                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}">Log Out</a></li>
                         @endauth
                         </ul>
-                      </li>
+                    </li>
                 </ul>
             </div>
         </div>

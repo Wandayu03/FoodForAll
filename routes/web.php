@@ -28,8 +28,8 @@ Route::get('/logout', [LoginControleer::class, 'logout'])->name('logout');
 
 Route::get('/donate', function () {
     return view('donate');
-})->name('donate');
-Route::post('/donate', [DonationController::class, 'store'])->name('donations.create');
+})->name('donate')->middleware('auth');
+Route::post('/donate', [DonationController::class, 'store'])->name('donation.create');
 
 Route::get('/about', function () {
     return view('about');
