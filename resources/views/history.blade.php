@@ -10,6 +10,7 @@
             <div>
                 <label for="filter" class="form-label me-2">Filter:</label>
                 <select id="filter" class="form-select d-inline-block w-auto">
+                    <option value="all">---</option>
                     <option value="all">All</option>
                     <option value="donation">Donation</option>
                     <option value="share">Share a Meal</option>
@@ -49,7 +50,7 @@
                     <strong>{{$history->user->name}}</strong>
                 </div>
 
-                <h5 class="card-title mb-4 my-4">You make an event called {{$history->shares->event_name}}. In order to distribure {{$history->shares->food_type}} to {{$history->shares->estimated_people}} with a budget of Rp. {{$history->shares->budget}}</h5>
+                <h5 class="card-title mb-4 my-4">You make an event called '{{$history->shares->event_name}}'. In order to distribure {{$history->shares->food_type}} to {{$history->shares->estimated_people}} with a budget of Rp. {{$history->shares->budget}}</h5>
 
                 <div class="d-flex justify-content-between align-items-center">
                 
@@ -73,7 +74,7 @@
                     </div>
 
                     <div class="view">
-                        <a href="#" class="btn btn-link">View>></a>
+                        <a href={{ route('tracking', ['id'=>$history->shares->id]) }} class="btn btn-link">View>></a>
                     </div>
                 </div>
             </div>

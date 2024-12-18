@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class HistoryController extends Controller
 {
     public function getHistory($id, $type){
-        $query = History::with(['donations', 'shares', 'user'])->where('user_id', $id);
+        $query = History::where('user_id', $id);
 
         if ($type != "all") {
             $query->where('activity_type', $type);
