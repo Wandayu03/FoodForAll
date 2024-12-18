@@ -26,7 +26,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('donate') }}">Donate</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ route('RentForSharing') }}">Share a Meal</a></li>
+                            <li><a class="dropdown-item" href="{{ route('share') }}">Share a Meal</a></li>
                         </ul>
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4">

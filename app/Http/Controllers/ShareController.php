@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payment;
 use App\Models\History;
 use App\Models\Share;
 use App\Models\Tracking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Midtrans\Config;
+use Midtrans\Snap;
 
 class ShareController extends Controller
 {
@@ -41,9 +44,52 @@ class ShareController extends Controller
             'status' => 'Donation accepted'
         ]);
 
-        return redirect()->intended('/');
+        Config::$serverKey = config('midtrans.serverKey');
+        Config::$isProduction = config('midtrans.isProduction');
+        Config::$isSanitized = config('midtrans.isSanitized');
+        Config::$is3ds = config('midtrans.is3ds');
 
-        // return redirect()->route('payment.process', ['share' => $share->id]);
+        $transactionDetails = [
+            'order_id' => uniqid('share_'),
+            'gross_amount' => $share->amount,
+        ];
+
+        // Detail Pelanggan
+        $customerDetails = [
+            'first_name' => Auth::user()->name,
+            'email' => Auth::user()->email,
+        ];
+
+        // Parameter untuk Midtrans
+        $midtransParams = [
+            'transaction_details' => $transactionDetails,
+            'customer_details' => $customerDetails,
+        ];
+
+        try {
+            // Dapatkan Snap Token dari Midtrans
+            $snapToken = Snap::getSnapToken($midtransParams);
+
+            // Simpan data pembayaran di database
+            Payment::create([
+                'user_id' => Auth::id(),
+                'share_id' => $share->id,
+                'transaction_id' => $transactionDetails['order_id'],
+                'activity_type' => 'share',
+                'amount' => $share->amount,
+                'status' => 'pending',
+            ]);
+
+            // Redirect ke halaman pembayaran dengan token dari Midtrans
+            return view('payment', compact('snapToken'));
+
+        } catch (\Exception $e) {
+            // Tangani jika terjadi error
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     //

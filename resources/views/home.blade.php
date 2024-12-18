@@ -38,7 +38,7 @@
                 Your contribution enables us to deliver meals and essentials to underserved communities. By letting us manage the process, you save time while still making a meaningful impact. Together, we can spread care and kindness effortlessly.
                 Ready to share?
                 </p>
-                <a href="{{ route('RentForSharing') }}">Discover how you can support others through our seamless service!</a>
+                <a href="{{ route('share') }}">Discover how you can support others through our seamless service!</a>
               </div>
             </div>
             <div class="header">

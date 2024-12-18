@@ -3,6 +3,7 @@
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\LoginControleer;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RentController;
@@ -31,8 +32,13 @@ Route::post('/donate', [DonationController::class, 'store'])->name('donation.cre
 
 Route::get('/share-a-meal', function () {
     return view('share');
-})->name('RentForSharing')->middleware('auth');
+})->name('share')->middleware('auth');
 Route::post('/share-a-meal', [ShareController::class, 'store'])->name('share.create');
+
+Route::get('/payment', [DonationController::class, 'paymentForm'])->name('payment.create');
+
+Route::get( '/payment',  [PaymentController::class, 'showForm'])->name('payment.show');
+Route::post('/payment/create', [PaymentController::class, 'createPayment'])->name('payment.create');
 
 Route::get('/about', function () {
     return view('about');

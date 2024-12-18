@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->onDelete('cascade');
             $table->foreignId('share_id')->nullable()->onDelete('cascade');
             $table->foreignId('donation_id')->nullable()->onDelete('cascade');
+            $table->string('transaction_id');
             $table->enum('activity_type', ['donation', 'share']);
             $table->decimal('amount', 10, 2); 
             $table->enum('status', ['pending', 'success', 'failed']);
