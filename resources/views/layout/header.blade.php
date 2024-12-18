@@ -30,7 +30,7 @@
                         </ul>
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4">
-                        <a class="nav-link active" aria-current="page" href="#">History</a>
+                        <a class="nav-link active" aria-current="page" href={{ route('history', ['id'=>Auth::user()->id, 'type'=>'all']) }}>History</a>
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4">
                         <a class="nav-link active" aria-current="page" href="{{ route('support') }}">Contact</a>

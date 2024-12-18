@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\History;
 use App\Models\Share;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,11 @@ class ShareController extends Controller
             'distribution_address' => 'required|string|max:255',
         ]);
 
+        $history = History::create([
+            'user_id' => Auth::id(),
+            'activity_type' => "share"
+        ]);
+
         $share = Share::create([
             'event_name' => $request->input('event_name'),
             'food_type' => $request->input('food_type'),
@@ -25,12 +31,14 @@ class ShareController extends Controller
             'budget' => $request->input('budget'),
             'distribution_date' => $request->input('distribution_date'),
             'distribution_address' => $request->input('distribution_address'),
-            'status' => 'pending', // Status awalnya pending
-            'user_id' => Auth::id(), // Menyimpan ID pengguna yang sedang login
+            'user_id' => Auth::id(),
+            'history_id' => $history->id
         ]);
 
-        // return redirect()->intended('/');
+        return redirect()->intended('/');
 
-        return redirect()->route('payment.process', ['share' => $share->id]);
+        // return redirect()->route('payment.process', ['share' => $share->id]);
     }
+
+    //
 }

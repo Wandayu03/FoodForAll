@@ -6,14 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class History extends Model
 {
-    //
-    public function payments()
+    protected $fillable=['activity_type', 'user_id'];
+
+    public function user()
     {
-        return $this->belongsTo(Payment::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function trackingUpdates()
-    {
-        return $this->hasMany(Tracking::class);
+    public function shares(){
+        return $this->hasOne(Share::class);
     }
+
+    public function donations(){
+        return $this->hasOne(Donation::class);
+    }
+
 }

@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('shares', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id'); // Relasi dengan users
-            $table->string('status');
+            $table->foreignId('user_id')->onDelete('cascade');
+            $table->foreignId('history_id')->nullable()->onDelete('cascade');
+            $table->enum('status', ['pending', 'completed', 'failed'])->default('pending');
             $table->string('event_name');
             $table->string('food_type');
             $table->integer('estimated_people');

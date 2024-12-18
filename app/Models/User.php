@@ -47,14 +47,19 @@ class User extends Authenticatable
     }
 
     public function payments(){
-        return $this->hasMany(PaymentModel::class);
+        return $this->hasMany(Payment::class);
     }
 
-    public function rents(){
-        return $this->hasMany(RentModel::class);
+    public function shares(){
+        return $this->hasMany(Share::class);
     }
 
     public function donations(){
-        return $this->hasMany(DonationModel::class);
+        return $this->hasMany(Donation::class);
     }
+
+    public function histories(){
+        return $this->hasMany(History::class);
+    }
+
 }

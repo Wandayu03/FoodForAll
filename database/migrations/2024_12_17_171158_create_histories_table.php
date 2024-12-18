@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('donations', function (Blueprint $table) {
+        Schema::create('histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained(); // Relasi dengan users
-            $table->string('status');
-            $table->decimal('amount', 10, 2); // Jumlah uang yang didonasikan
+            $table->foreignId('user_id')->onDelete('cascade');
+            $table->enum('activity_type', ['donation', 'share']);
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('donations');
+        Schema::dropIfExists('histories');
     }
 };

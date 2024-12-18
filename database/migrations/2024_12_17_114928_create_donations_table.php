@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('histories', function (Blueprint $table) {
+        Schema::create('donations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('payments_id')->onDelete('cascade'); 
-            $table->foreignId('rent_id')->onDelete('cascade');
-            $table->enum('status', ['pending','in-progress', 'completed', 'failed'])->default('pending');
-            $table->text('description')->nullable(); 
+            $table->foreignId('user_id')->onDelete('cascade');
+            $table->foreignId('history_id')->onDelete('cascade');
+            $table->enum('status', ['pending', 'completed', 'failed'])->default('pending');
+            $table->decimal('amount', 10, 2);
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('histories');
+        Schema::dropIfExists('donations');
     }
 };
