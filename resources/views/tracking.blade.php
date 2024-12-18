@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', 'More1')
+@section('title', 'Tracking')
 
 @section('content')
 <main class="content">
@@ -14,7 +14,7 @@
         <div class="timeline">
             <div class="step">
                 <div class="circle"></div>
-                <p><b>{{$trackings[0]->status}}</b></p>
+                <p><b>Share a Meal event made</b></p>
             </div>
             @foreach ($trackings as $tracking)
             <div class="line"></div>

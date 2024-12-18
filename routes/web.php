@@ -41,20 +41,8 @@ Route::get('/support', function () {
     return view('support');
 })->name('support');
 
-Route::get('/history/{id}/{type}', [HistoryController::class, 'getHistory'])->name('history');
+Route::get('/history/{type}', [HistoryController::class, 'getHistory'])->name('history')->middleware('auth');
 
 Route::get('/tracking/{id}', [TrackingController::class, 'getTracking'])->name('tracking')->middleware('auth');
 
-Route::get('/proof', function () {
-    return view('proof');
-})->middleware('auth');
-
-
-//2 ini kalo bisa diapus ganti ke yg ada id nya
-Route::get('/more1', function () {
-    return view('more1');
-})->middleware('auth');
-Route::get('/more2', function () {
-    return view('more2');
-})->middleware('auth');
 

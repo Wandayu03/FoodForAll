@@ -90,9 +90,8 @@
 <link rel="stylesheet" href="{{ asset('assets/css/history.css') }}">
 <script>
     document.getElementById('filter').addEventListener('change', function () {
-        const userId = "{{ $userId }}"; 
         const type = this.value; 
-        const url = `/history/${userId}/${type}`; 
+        const url = `/history/${type}`; 
         window.location.href = url;
     });
 </script>

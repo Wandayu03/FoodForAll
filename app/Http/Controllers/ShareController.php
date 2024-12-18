@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\History;
 use App\Models\Share;
+use App\Models\Tracking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,6 +34,11 @@ class ShareController extends Controller
             'distribution_address' => $request->input('distribution_address'),
             'user_id' => Auth::id(),
             'history_id' => $history->id
+        ]);
+
+        Tracking::create([
+            'share_id' => $share->id,
+            'status' => 'Donation accepted'
         ]);
 
         return redirect()->intended('/');
