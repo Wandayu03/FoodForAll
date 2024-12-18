@@ -20,7 +20,7 @@ class Share extends Model
 
     public function tracking()
     {
-        return $this->hasOne(Tracking::class);
+        return $this->hasMany(Tracking::class);
     }
 
     public function history()

@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\History;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HistoryController extends Controller
 {
-    public function getHistory($id, $type){
-        $query = History::with(['donations', 'shares', 'user'])->where('user_id', $id);
+    public function getHistory($type){
+        $id = Auth::user()->id;
+        $query = History::where('user_id', $id);
 
         if ($type != "all") {
             $query->where('activity_type', $type);
