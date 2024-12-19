@@ -36,6 +36,7 @@ class ShareController extends Controller
             'distribution_date' => $request->input('distribution_date'),
             'distribution_address' => $request->input('distribution_address'),
             'user_id' => Auth::id(),
+            'status' => 'pending',
             'history_id' => $history->id
         ]);
 
@@ -51,7 +52,7 @@ class ShareController extends Controller
 
         $transactionDetails = [
             'order_id' => uniqid('share_'),
-            'gross_amount' => $share->amount,
+            'gross_amount' => $share->budget,
         ];
 
         // Detail Pelanggan
@@ -76,7 +77,7 @@ class ShareController extends Controller
                 'share_id' => $share->id,
                 'transaction_id' => $transactionDetails['order_id'],
                 'activity_type' => 'share',
-                'amount' => $share->amount,
+                'amount' => $share->budget,
                 'status' => 'pending',
             ]);
 
