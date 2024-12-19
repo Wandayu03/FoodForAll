@@ -36,7 +36,7 @@
                 <div class="order-detail-right">
                     <div class="budget-donation">
                         <p>Budget/Donation</p>
-                        <input type="number" placeholder="Example: 350.000" name="budget" required>
+                        <input type="number" placeholder="Example: 350.000" name="amount" required>
                     </div>
                     <div class="distribution-date">
                         <p>Distribution Date</p>

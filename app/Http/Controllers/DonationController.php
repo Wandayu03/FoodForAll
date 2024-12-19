@@ -12,8 +12,7 @@ use Midtrans\Snap;
 
 class DonationController extends Controller
 {
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $request->validate([
             'amount' => 'required|numeric|min:10000',
         ]);
@@ -69,7 +68,7 @@ class DonationController extends Controller
             ]);
 
             // Redirect ke halaman pembayaran dengan token dari Midtrans
-            return view('payment', compact('snapToken'));
+            return view('payment', compact('snapToken', 'donation'));
 
         } catch (\Exception $e) {
             // Tangani jika terjadi error
@@ -82,16 +81,50 @@ class DonationController extends Controller
 
     public function paymentNotification(Request $request)
     {
-        // Verifikasi dan proses notifikasi dari Midtrans
-        $status = $request->get('status_code');
+        try {
+            // Inisialisasi Midtrans Notification
+            $notification = new \Midtrans\Notification();
+    
+            // Dapatkan detail notifikasi
+            $transactionStatus = $notification->transaction_status;
+            $orderId = $notification->order_id;
+    
+            // Cari pembayaran berdasarkan transaction_id (order_id)
+            $payment = Payment::where('transaction_id', $orderId)->first();
+    
+            if ($payment) {
+                // Periksa status transaksi
+                if (in_array($transactionStatus, ['capture', 'settlement', 'success'])) {
+                    $payment->status = 'success';
+                } elseif (in_array($transactionStatus, ['pending'])) {
+                    $payment->status = 'pending';
+                } elseif (in_array($transactionStatus, ['deny', 'expire', 'cancel'])) {
+                    $payment->status = 'failed';
+                }
+    
+                // Simpan perubahan status ke database
+                $payment->save();
+            }
 
-        // Update status pembayaran di database
-        $payment = Payment::where('transaction_id', $request->get('order_id'))->first();
-        $payment->status = ($status == '200') ? 'success' : 'failed';
-        $payment->save();
+            // Berikan respons sukses ke Midtrans
+            return response()->json(['message' => 'Notification processed successfully'], 200);
+    
+        } catch (\Exception $e) {
+            // Tangani error dan log pesan error
+            // \Log::error("Payment Notification Error: " . $e->getMessage());
+            // return response()->json(['message' => 'Failed to process notification'], 500);
+        }
+        
+        // // Verifikasi dan proses notifikasi dari Midtrans
+        // $status = $request->get('status_code');
 
-        // Redirect ke halaman terima kasih
-        return redirect()->route('thankyou');
+        // // Update status pembayaran di database
+        // $payment = Payment::where('transaction_id', $request->get('order_id'))->first();
+        // $payment->status = ($status == '200') ? 'success' : 'failed';
+        // $payment->save();
+
+        // // Redirect ke halaman terima kasih
+        // return redirect()->route('thankyou');
     }
 
 }

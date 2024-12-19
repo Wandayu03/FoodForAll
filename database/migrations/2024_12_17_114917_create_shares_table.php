@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->onDelete('cascade');
             $table->foreignId('history_id')->nullable()->onDelete('cascade');
-            $table->string('status');
+            $table->string('status')->default('pending');
             $table->string('event_name');
             $table->string('food_type');
             $table->integer('estimated_people');
-            $table->decimal('budget', 10, 2);
+            $table->decimal('amount', 10, 2);
             $table->date('distribution_date');
             $table->string('distribution_address');
             $table->timestamps();

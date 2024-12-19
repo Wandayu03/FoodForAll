@@ -57,43 +57,16 @@ class PaymentController extends Controller
         $payment->snap_token = $snapToken;
         $payment->save();
 
-
-        // data untuk transaksi Midtrans
-        // $transactionDetails = [
-        //     'order_id' => $payment->transaction_id,
-        //     'gross_amount' => $payment->amount,
-        // ];
-
-        // $customerDetails = [
-        //     'first_name' => Auth::user()->name,
-        //     'email' => Auth::user()->email,
-        // ];
-
-        // $midtransParams = [
-        //     'transaction_details' => $transactionDetails,
-        //     'customer_details' => $customerDetails,
-        // ];
-
-        // try {
-        //     // generate snap token midtrans
-        //     $snapToken = Snap::getSnapToken($midtransParams);
-
-        //     return response()->json([
-        //         'success' => true,
-        //         'snap_token' => $snapToken,
-        //     ]);
-        // } catch (\Exception $e) {
-        //     return response()->json([
-        //         'success' => false,
-        //         'message' => $e->getMessage(),
-        //     ], 500);
-        // }
+        $payment->status = 'success';
+        $payment->save();
+        return view('success', compact('payment'));
     }
 
-    // public function getPayment(Payment $payment){
-    //     $products = config('donation');
-    // }
-
+    public function success(Payment $payment){
+        $payment->status = 'success';
+        $payment->save();
+        return view('success', compact('payment'));
+    }
 
     public function createSnapToken()
     {

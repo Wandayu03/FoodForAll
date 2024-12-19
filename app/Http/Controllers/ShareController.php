@@ -18,7 +18,7 @@ class ShareController extends Controller
             'event_name' => 'required|string|max:255',
             'food_type' => 'required|string|max:255',
             'estimated_people' => 'required|integer',
-            'budget' => 'required|numeric',
+            'amount' => 'required|numeric|min:1000',
             'distribution_date' => 'required|date',
             'distribution_address' => 'required|string|max:255',
         ]);
@@ -32,7 +32,7 @@ class ShareController extends Controller
             'event_name' => $request->input('event_name'),
             'food_type' => $request->input('food_type'),
             'estimated_people' => $request->input('estimated_people'),
-            'budget' => $request->input('budget'),
+            'amount' => $request->input('amount'),
             'distribution_date' => $request->input('distribution_date'),
             'distribution_address' => $request->input('distribution_address'),
             'user_id' => Auth::id(),
@@ -81,7 +81,7 @@ class ShareController extends Controller
             ]);
 
             // Redirect ke halaman pembayaran dengan token dari Midtrans
-            return view('payment', compact('snapToken'));
+            return view('payment', compact('snapToken', 'share'));
 
         } catch (\Exception $e) {
             // Tangani jika terjadi error
