@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('event_name');
             $table->string('food_type');
             $table->integer('estimated_people');
-            $table->decimal('amount', 10, 2);
+            $table->decimal('budget', 10, 2);
             $table->date('distribution_date');
             $table->string('distribution_address');
             $table->timestamps();

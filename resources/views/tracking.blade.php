@@ -7,9 +7,7 @@
     <div class="containers">
         <div class="headers">
             <h2>{{$share->event_name}}</h2>
-            {{-- kalo payment udh kelar pake yg bawah --}}
-            <p>Order ID: #{{$share->payment->id}}</p>
-            {{-- <p>Order ID: #{{$share->id}}</p> --}}
+            <p>Order ID: #{{$share->id}}</p>
         </div>
         <div class="timeline">
             <div class="step">

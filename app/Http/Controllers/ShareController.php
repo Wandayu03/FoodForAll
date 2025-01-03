@@ -32,7 +32,7 @@ class ShareController extends Controller
             'event_name' => $request->input('event_name'),
             'food_type' => $request->input('food_type'),
             'estimated_people' => $request->input('estimated_people'),
-            'amount' => $request->input('amount'),
+            'budget' => $request->input('amount'),
             'distribution_date' => $request->input('distribution_date'),
             'distribution_address' => $request->input('distribution_address'),
             'user_id' => Auth::id(),

@@ -9,7 +9,7 @@
     <p>at a price of</p>
     <p class="price">
       @if(isset($share))
-          Rp{{ number_format($share->amount, 0, ',', '.') }}
+          Rp{{ number_format($share->budget, 0, ',', '.') }}
       @elseif(isset($donation))
           Rp{{ number_format($donation->amount, 0, ',', '.') }}
       @endif

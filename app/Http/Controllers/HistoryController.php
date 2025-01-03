@@ -10,7 +10,7 @@ class HistoryController extends Controller
 {
     public function getHistory($type){
         $id = Auth::user()->id;
-        $query = History::where('user_id', $id);
+        $query = History::findOrFail($id);
 
         if ($type != "all") {
             $query->where('activity_type', $type);
