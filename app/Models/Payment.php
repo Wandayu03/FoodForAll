@@ -10,10 +10,14 @@ class Payment extends Model
      protected $fillable = [
         'user_id',
         'donation_id',
+        'share_id',
         'transaction_id',
+        'activity_type',
         'amount',
         'status',
+        'snap_token',
     ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

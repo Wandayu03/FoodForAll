@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Payment;
 use App\Models\Donation;
 use App\Models\History;
+use App\Models\Share;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Midtrans\Config;
 use Midtrans\Snap;
 
@@ -25,9 +27,9 @@ class DonationController extends Controller
         $donation = Donation::create([
             'user_id' => Auth::id(),
             'amount' => $request->input('amount'),
-            'history_id' => $history->id
+            'history_id' => $history->id,
+            'status' => 'pending'
         ]);
-        
 
         Config::$serverKey = config('midtrans.serverKey');
         Config::$isProduction = config('midtrans.isProduction');
@@ -57,18 +59,22 @@ class DonationController extends Controller
             // Dapatkan Snap Token dari Midtrans
             $snapToken = Snap::getSnapToken($midtransParams);
 
+            Log::info("Snap Token: " . $snapToken);
+
             // Simpan data pembayaran di database
-            Payment::create([
+            $payment = Payment::create([
                 'user_id' => Auth::id(),
                 'donation_id' => $donation->id,
                 'transaction_id' => $transactionDetails['order_id'],
                 'activity_type' => 'donation',
                 'amount' => $donation->amount,
                 'status' => 'pending',
+                'snap_token' => $snapToken
             ]);
 
+            Log::info("Payment created with snap token: " . $payment->snap_token);
             // Redirect ke halaman pembayaran dengan token dari Midtrans
-            return view('payment', compact('snapToken', 'donation'));
+            return view('payment', compact('snapToken', 'donation', 'payment'));
 
         } catch (\Exception $e) {
             // Tangani jika terjadi error
@@ -78,53 +84,4 @@ class DonationController extends Controller
             ], 500);
         }
     }
-
-    public function paymentNotification(Request $request)
-    {
-        try {
-            // Inisialisasi Midtrans Notification
-            $notification = new \Midtrans\Notification();
-    
-            // Dapatkan detail notifikasi
-            $transactionStatus = $notification->transaction_status;
-            $orderId = $notification->order_id;
-    
-            // Cari pembayaran berdasarkan transaction_id (order_id)
-            $payment = Payment::where('transaction_id', $orderId)->first();
-    
-            if ($payment) {
-                // Periksa status transaksi
-                if (in_array($transactionStatus, ['capture', 'settlement', 'success'])) {
-                    $payment->status = 'success';
-                } elseif (in_array($transactionStatus, ['pending'])) {
-                    $payment->status = 'pending';
-                } elseif (in_array($transactionStatus, ['deny', 'expire', 'cancel'])) {
-                    $payment->status = 'failed';
-                }
-    
-                // Simpan perubahan status ke database
-                $payment->save();
-            }
-
-            // Berikan respons sukses ke Midtrans
-            return response()->json(['message' => 'Notification processed successfully'], 200);
-    
-        } catch (\Exception $e) {
-            // Tangani error dan log pesan error
-            // \Log::error("Payment Notification Error: " . $e->getMessage());
-            // return response()->json(['message' => 'Failed to process notification'], 500);
-        }
-        
-        // // Verifikasi dan proses notifikasi dari Midtrans
-        // $status = $request->get('status_code');
-
-        // // Update status pembayaran di database
-        // $payment = Payment::where('transaction_id', $request->get('order_id'))->first();
-        // $payment->status = ($status == '200') ? 'success' : 'failed';
-        // $payment->save();
-
-        // // Redirect ke halaman terima kasih
-        // return redirect()->route('thankyou');
-    }
-
 }

@@ -12,11 +12,19 @@ class HistoryController extends Controller
         $id = Auth::user()->id;
         $query = History::where('user_id', $id);
 
+        if ($type == 'share') {
+            $query->with('shares');
+        } elseif ($type == 'donation') {
+            $query->with('donations');
+        } else {
+            $query->with(['shares', 'donations']);
+        }
+        
         if ($type != "all") {
             $query->where('activity_type', $type);
         }
     
-        $histories = $query->get();
+        $histories = $query->paginate(10); 
     
         return view('history', ['userId' => $id, 'histories' => $histories]);
 

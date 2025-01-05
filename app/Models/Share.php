@@ -6,16 +6,30 @@ use Illuminate\Database\Eloquent\Model;
 
 class Share extends Model
 {
-    protected $fillable=['event_name', 'food_type', 'estimated_people', 'amount', 'distribution_date', 'distribution_address', 'user_id', 'status', 'history_id'];
+    protected $fillable=[
+        'event_name', 
+        'food_type', 
+        'estimated_people', 
+        'budget', 
+        'distribution_date', 
+        'distribution_address', 
+        'user_id', 'status', 
+        'history_id'
+    ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    public function history()
+    {
+        return $this->belongsTo(History::class);
+    }
+
     public function payment()
     {
-        return $this->hasOne(Payment::class);
+        return $this->hasMany(Payment::class);
     }
 
     public function tracking()
@@ -23,9 +37,5 @@ class Share extends Model
         return $this->hasMany(Tracking::class);
     }
 
-    public function history()
-    {
-        return $this->belongsTo(History::class);
-    }
     //
 }

@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Donation;
 use Illuminate\Http\Request;
 use Midtrans\Config;
 use Midtrans\Snap;
 use App\Models\Payment;
+use App\Models\Share;
+use Midtrans\Notification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
 {
@@ -15,110 +19,118 @@ class PaymentController extends Controller
         return view('payment');
     }
 
-    public function createPayment(Request $request)
-    {
-        // buat ambil konfigurasi Midtrans dari config file
-        Config::$serverKey = config('midtrans.serverKey');
-        Config::$isProduction = config('midtrans.isProduction');
-        Config::$isSanitized = config('midtrans.isSanitized');
-        Config::$is3ds = config('midtrans.is3ds');
+    public function paymentSuccess($transaction_id) {
+    // Ambil data pembayaran berdasarkan transaction_id
+    $payment = Payment::where('transaction_id', $transaction_id)->first();
 
-        // simpen data pembayaran di database
-        $payment = Payment::create([
-            'user_id' => Auth::id(),
-            'type' => $request->type,
-            'transaction_id' => uniqid('trx_'), // untuk membuat ID transaksi unik
-            'amount' => $request->amount,
-            'status' => 'pending',
-        ]);
+        if ($payment) {
+            // Jika pembayaran ditemukan, ubah statusnya menjadi success
+            $payment->status = 'success';
+            $payment->save();
 
-        // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey =config('midtrans.serverKey');
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        \Midtrans\Config::$isProduction = false;
-        // Set sanitization on (default)
-        \Midtrans\Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
-        \Midtrans\Config::$is3ds = true;
+            // Jika aktivitasnya adalah donation, perbarui status donation juga
+            if ($payment->activity_type == 'donation') {
+                $donation = Donation::find($payment->donation_id);
+                if ($donation) {
+                    $donation->status = 'completed';
+                    $donation->save();
+                }
+            } else if ($payment->activity_type == 'share') {
+                $share = Share::find($payment->share_id);
+                if ($share) {
+                    $share->status = 'process';
+                    $share->save();
+                } else {
+                    Log::error('Share not found for payment ID: ' . $payment->id);
+                }
+            }
 
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => $payment->transaction_id,
-                'gross_amount' => $payment->amount,
-            ),
-            'customer_details' => array(
-                'first_name' => Auth::user()->name,
-                'email' => Auth::user()->email,
-            ),
-        );
-        
-        $snapToken = \Midtrans\Snap::getSnapToken($params);
-
-        $payment->snap_token = $snapToken;
-        $payment->save();
-
-        $payment->status = 'success';
-        $payment->save();
-        return view('success', compact('payment'));
-    }
-
-    public function success(Payment $payment){
-        $payment->status = 'success';
-        $payment->save();
-        return view('success', compact('payment'));
-    }
-
-    public function createSnapToken()
-    {
-        $url = 'https://api.sandbox.midtrans.com/v2/charge';
-        $data = [
-            "transaction_details" => [
-                "order_id" => "order-id-123",
-                "gross_amount" => 10000, // Total jumlah pembayaran
-            ],
-            "item_details" => [
-                [
-                    "id" => "item1",
-                    "price" => 10000,
-                    "quantity" => 1,
-                    "name" => "Item Name"
-                ]
-            ],
-            "customer_details" => [
-                "first_name" => "John",
-                "last_name" => "Doe",
-                "email" => "john.doe@example.com",
-                "phone" => "08123456789"
-            ]
-        ];
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Content-Type: application/json',
-            'Authorization: Basic ' . base64_encode('YOUR_SERVER_KEY:')
-        ]);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-
-        $response = curl_exec($ch);
-        curl_close($ch);
-
-        // // Tambahkan log respons di sini
-        // Log::info('Respons dari Midtrans: ', ['response' => $response]);
-
-        // if ($httpCode !== 200) {
-        //     return response()->json(['error' => 'Failed to create snap token', 'http_code' => $httpCode], $httpCode);
-        // }
-
-
-        $response = json_decode($response, true);
-        if (isset($response['token'])) {
-            return response()->json(['snap_token' => $response['token']]);
+            // Kirim data ke blade untuk ditampilkan
+            return view('success', compact('payment'));
         } else {
-            return response()->json(['error' => 'Failed to create snap token'], 500);
+            // Jika pembayaran tidak ditemukan
+            return redirect()->route('payment.failure');
         }
     }
 
+
+    public function paymentNotification(Request $request)
+    {
+        $request->validate([
+            'transaction_status' => 'required',
+            'order_id' => 'required',
+        ]);
+        
+        try {
+            $notification = new Notification();
+
+            $transactionStatus = $notification->transaction_status;
+            $orderId = $notification->order_id;
+
+            Log::info("Transaction Status: " . $transactionStatus); 
+            Log::info("Order ID: " . $orderId);
+
+            $payment = Payment::where('transaction_id', $orderId)->first();
+
+            if ($payment) {
+                if (in_array($transactionStatus, ['capture', 'settlement', 'success'])) {
+                    $payment->status = 'success';
+                    Log::info("Payment status updated to success");
+                    
+                    if ($payment->activity_type == 'donation') {
+                        $donation = Donation::find($payment->donation_id);
+                        $donation->status = 'completed';
+                        $donation->save();
+                        Log::info("Donation status updated to completed");
+                    }
+
+                    if ($payment->activity_type == 'share') {
+                        $share = Share::find($payment->share_id);
+                        $share->status = 'process';
+                        $share->save();
+                        Log::info("Share status updated to process");
+                    }
+
+
+                } elseif (in_array($transactionStatus, ['pending'])) {
+                    $payment->status = 'pending';
+                    Log::info("Payment status updated to pending");
+
+                } elseif (in_array($transactionStatus, ['deny', 'expire', 'cancel'])) {
+                    $payment->status = 'failed';
+                    Log::info("Payment status updated to failed");
+                    
+                    if ($payment->activity_type == 'donation') {
+                        $donation = Donation::find($payment->donation_id);
+                        $donation->status = 'failed';
+                        $donation->save();
+                        Log::info("Donation status updated to failed");
+                    }
+
+                    if ($payment->activity_type == 'share') {
+                        $share = Share::find($payment->share_id);
+                        $share->status = 'failed';
+                        $share->save();
+                        Log::info("Share status updated to failed");
+                    }
+                }
+
+                $payment->save();
+                Log::info("Payment saved");
+            }
+
+            Log::info("Payment notification processed for order: " . $orderId);
+            return response()->json(['message' => 'Notification processed successfully'], 200);
+
+        } catch (\Exception $e) {
+            Log::error("Payment Notification Error: " . $e->getMessage());
+            return response()->json(['message' => 'Failed to process notification'], 500);
+        }
+    }
+
+    // public function paymentSuccess($transaction_id)
+    // {
+    //     $payment = Payment::where('transaction_id', $transaction_id)->first();
+    //     return view('success', compact('payment'));
+    // }
 }

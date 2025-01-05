@@ -18,7 +18,7 @@ class ShareController extends Controller
             'event_name' => 'required|string|max:255',
             'food_type' => 'required|string|max:255',
             'estimated_people' => 'required|integer',
-            'amount' => 'required|numeric|min:1000',
+            'budget' => 'required|numeric|min:1000',
             'distribution_date' => 'required|date',
             'distribution_address' => 'required|string|max:255',
         ]);
@@ -29,13 +29,13 @@ class ShareController extends Controller
         ]);
 
         $share = Share::create([
+            'user_id' => Auth::id(),
             'event_name' => $request->input('event_name'),
             'food_type' => $request->input('food_type'),
             'estimated_people' => $request->input('estimated_people'),
-            'amount' => $request->input('amount'),
+            'budget' => $request->input('budget'),
             'distribution_date' => $request->input('distribution_date'),
             'distribution_address' => $request->input('distribution_address'),
-            'user_id' => Auth::id(),
             'status' => 'pending',
             'history_id' => $history->id
         ]);
@@ -72,17 +72,18 @@ class ShareController extends Controller
             $snapToken = Snap::getSnapToken($midtransParams);
 
             // Simpan data pembayaran di database
-            Payment::create([
+            $payment = Payment::create([
                 'user_id' => Auth::id(),
                 'share_id' => $share->id,
                 'transaction_id' => $transactionDetails['order_id'],
                 'activity_type' => 'share',
                 'amount' => $share->budget,
                 'status' => 'pending',
+                'snap_token' => $snapToken
             ]);
 
             // Redirect ke halaman pembayaran dengan token dari Midtrans
-            return view('payment', compact('snapToken', 'share'));
+            return view('payment', compact('snapToken', 'share', 'payment'));
 
         } catch (\Exception $e) {
             // Tangani jika terjadi error

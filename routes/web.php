@@ -35,10 +35,10 @@ Route::get('/share-a-meal', function () {
 })->name('share')->middleware('auth');
 Route::post('/share-a-meal', [ShareController::class, 'store'])->name('share.create');
 
-Route::get('/payment', [DonationController::class, 'paymentForm'])->name('payment.create');
-
 Route::get( '/payment',  [PaymentController::class, 'showForm'])->name('payment.show');
-Route::post('/payment/create', [PaymentController::class, 'createPayment'])->name('payment.create');
+Route::post('/payment/notification', [PaymentController::class, 'paymentNotification'])->name('payment.notification');
+Route::get('/payment/success/{transaction_id}', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+
 
 Route::get('/about', function () {
     return view('about');

@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->onDelete('cascade');
             $table->foreignId('history_id')->onDelete('cascade');
-            $table->enum('status', ['pending', 'completed', 'failed'])->default('pending');
             $table->decimal('amount', 10, 2);
+            $table->enum('status', ['pending', 'completed', 'failed'])->default('pending');
             $table->timestamps();
-        });
+        });        
     }
 
     /**
