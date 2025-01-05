@@ -14,11 +14,11 @@ class History extends Model
     }
 
     public function shares(){
-        return $this->belongsTo(Share::class);
+        return $this->hasOne(Share::class);
     }
 
     public function donations(){
-        return $this->belongsTo(Donation::class);
+        return $this->hasOne(Donation::class);
     }
 
 }

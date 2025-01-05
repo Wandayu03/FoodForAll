@@ -10,7 +10,7 @@ class HistoryController extends Controller
 {
     public function getHistory($type){
         $id = Auth::user()->id;
-        $query = History::findOrFail($id);
+        $query = History::where('user_id', $id);
 
         if ($type == 'share') {
             $query->with('shares');
