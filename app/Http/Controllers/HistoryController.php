@@ -24,7 +24,7 @@ class HistoryController extends Controller
             $query->where('activity_type', $type);
         }
     
-        $histories = $query->paginate(10); 
+        $histories = $query->paginate(5); 
     
         return view('history', ['userId' => $id, 'histories' => $histories]);
 

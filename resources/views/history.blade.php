@@ -6,19 +6,19 @@
 <div class="min-heigt">
     <div class="container py-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1>History</h1>
+            <h1>{{ __('history.history') }}</h1>
             <div>
-                <label for="filter" class="form-label me-2">Filter:</label>
+                <label for="filter" class="form-label me-2">{{ __('history.filter') }}</label>
                 <select id="filter" class="form-select d-inline-block w-auto">
                     <option value="all">---</option>
-                    <option value="all">All</option>
-                    <option value="donation">Donation</option>
-                    <option value="share">Share a Meal</option>
+                    <option value="all">{{ __('history.all') }}</option>
+                    <option value="donation">{{ __('history.donation') }}</option>
+                    <option value="share">{{ __('history.share') }}</option>
                 </select>
             </div>
         </div>
 
-        @if ($histories != null)
+    @if ($histories != null)
     @foreach ($histories as $history)
         @if ($history->activity_type == 'donation')
             <div class="card mb-4">
@@ -27,11 +27,11 @@
                         <img src="https://via.placeholder.com/40" alt="Profile Icon" class="rounded-circle me-3" style="width: 40px; height: 40px;">
                         <strong>{{ $history->user->name }}</strong>
                     </div>
-                        <h5 class="card-title mb-4 my-4">You made a donation of Rp. {{ $history->donations->amount }}</h5>
+                        <h5 class="card-title mb-4 my-4">{{ __('history.made_donation') }} {{ $history->donations->amount }}</h5>
 
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <span>Status :</span>
+                                <span>{{ __('history.status') }}</span>
                                 @if ($history->donations->status == "completed")    
                                     <span class="status-box status-active">{{ $history->donations->status }}</span>
                                 @else
@@ -64,7 +64,7 @@
                             </div>
 
                             <div>
-                                <span>Status :</span>
+                                <span>{{ __('history.status') }}</span>
                                 @if ($history->shares->status == "completed")    
                                     <span class="status-box status-active">{{ $history->shares->status }}</span>
                                 @else
@@ -73,18 +73,21 @@
                             </div>
 
                             <div class="view">
-                                <a href={{ route('tracking', ['id' => $history->shares->id]) }} class="btn btn-link">View >></a>
+                                <a href={{ route('tracking', ['id' => $history->shares->id]) }} class="btn btn-link">{{ __('history.view') }} >></a>
                             </div>
                         </div>
-                    @else
-                        <p class="text-muted">No share details available.</p>
-                    @endif
+                        @else
+                            <p class="text-muted">{{ __('history.no_share_details') }}<</p>
+                        @endif
+                    </div>
                 </div>
-            </div>
-        @endif
-    @endforeach
-@endif
-
+            @endif
+        @endforeach
+        <!-- Pagination -->
+        <div class="d-flex justify-content-center mt-4">
+        {{ $histories->links('pagination::bootstrap-5') }}
+        </div>
+    @endif
     </div>
 </div>
 @endsection

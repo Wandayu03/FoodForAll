@@ -14,26 +14,26 @@
                 </button>
                 <ul class="navbar-nav ms-lg-auto p-4 p-lg-0">
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4">
-                        <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('home') }}">@lang('navbar.home')</a>
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4">
-                        <a class="nav-link active" aria-current="page" href="{{ route('about') }}">About</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('about') }}">@lang('navbar.about')</a>
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4 dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Contribute
+                        {{ __('navbar.contribute') }}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('donate') }}">Donate</a></li>
+                            <li><a class="dropdown-item" href="{{ route('donate') }}">@lang('navbar.donate')</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ route('share') }}">Share a Meal</a></li>
+                            <li><a class="dropdown-item" href="{{ route('share') }}">@lang('navbar.share_meal')</a></li>
                         </ul>
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4">
-                        <a class="nav-link active" aria-current="page" href={{ route('history', ['type'=>'all']) }}>History</a>
+                        <a class="nav-link active" aria-current="page" href={{ route('history', ['type'=>'all']) }}>@lang('navbar.history')</a>
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4">
-                        <a class="nav-link active" aria-current="page" href="{{ route('support') }}">Contact</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('support') }}">@lang('navbar.contact')</a>
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4 dropdown">
                         <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -41,19 +41,29 @@
                             @auth
                                 {{ Auth::user()->name }} 
                             @else
-                                Register
+                                @lang('navbar.register')
                             @endauth
                             </span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                         @guest
-                            <li><a class="dropdown-item" href="{{ route('register') }}">Register</a></li>
+                            <li><a class="dropdown-item" href="{{ route('register') }}">@lang('navbar.register')</a></li>
                         @endguest
                         @auth
-                            <li><a class="dropdown-item" href="{{ route('logout') }}">Log Out</a></li>
+                            <li><a class="dropdown-item" href="{{ route('logout') }}">@lang('navbar.')</a></li>
                         @endauth
                         </ul>
                     </li>
+                    <li class="nav-item px-3 px-lg-0 py-1 py-lg-4 dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="ms-1">Lang</span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="langDropdown">
+                            <li><a class="dropdown-item" href="{{ route('set-locale', 'en') }}">English</a></li>
+                            <li><a class="dropdown-item" href="{{ route('set-locale', 'id') }}">Indonesia</a></li>
+                        </ul>
+                    </li>
+                    
                 </ul>
             </div>
         </div>

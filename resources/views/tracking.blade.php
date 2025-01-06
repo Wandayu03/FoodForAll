@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', 'Tracking')
+@section('title', __('tracking.title'))
 
 @section('content')
 <main class="content">
@@ -12,7 +12,7 @@
         <div class="timeline">
             <div class="step">
                 <div class="circle"></div>
-                <p><b>Share a Meal event made</b></p>
+                <p><b>{{ __('tracking.step1') }}</b></p>
             </div>
             @foreach ($trackings as $tracking)
             <div class="line"></div>
@@ -30,17 +30,17 @@
         <div class="order-info">
             <div class="info-row">
                 <i class="fa-solid fa-calendar me-2"></i>
-                <p>Date: {{$share->distribution_date}}</p>
-                <p class="right">Number of serving: {{$share->estimated_people}}</p>
+                <p>{{ __('tracking.date_label') }}: {{$share->distribution_date}}</p>
+                <p class="right">{{ __('tracking.serving_count') }}: {{$share->estimated_people}}</p>
             </div>
             <div class="info-row">
                 <i class="fa-solid fa-location-dot me-2"></i>
                 <p>{{$share->distribution_address}}</p>
-                <p class="right">Payment status: {{$share->status}}</p>
+                <p class="right">{{ __('tracking.payment_status_label') }}: {{$share->status}}</p>
             </div>
             <div class="info-row">
-                <p>Donation: Rp {{$share->budget}},-</p>
-                <p class="right">Type of food : {{$share->food_type}}</p>
+                <p>{{ __('tracking.donation_label') }}: Rp {{$share->budget}},-</p>
+                <p class="right">{{ __('tracking.food_type_label') }}: {{$share->food_type}}</p>
             </div>
         </div>
     </div>

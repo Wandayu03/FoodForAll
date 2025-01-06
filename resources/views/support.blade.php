@@ -7,100 +7,100 @@
 <div>
     <div class="support">
         <div class="support-form">
-            <h2>How can we help?</h2>
-            <p>Please refer to our <a href="#sfaq"><strong>FAQ</strong></a> to see if your concerned has been answered</p>
+            <h2>{{ __('support.support_header') }}</h2>
+            <p>{{ __('support.faq_intro') }}</p>
             <form>
-                <label>Email: </label>
-                <input type="email" placeholder="Your e-mail">
-                <label>Problem:</label>
-                <textarea placeholder="Please explain your problem"></textarea>
-                <button>Submit</button>
+                <label>{{ __('support.email_label') }}</label>
+                <input type="email" placeholder="{{ __('support.email_label') }}">
+                <label>{{ __('support.problem_label') }}</label>
+                <textarea placeholder="{{ __('support.problem_label') }}"></textarea>
+                <button>{{ __('support.submit_button') }}</button>
             </form>
         </div>
     </div>
     <div class="faq" id="sfaq">
-        <h3>Frequently Asked Question</h3>
+        <h3>{{ __('support.faq_header') }}</h3>
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                How does FoodForAll work?
+                {{ __('support.faq_questions.how_food_for_all_works.question') }}
               </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet arcu a dolor malesuada laoreet sit amet eu tortor. Fusce efficitur aliquam neque, at commodo turpis pretium sit amet. Aenean vehicula eros lacinia nibh pulvinar, nec vulputate mi ullamcorper. Nullam sed sodales tellus, quis feugiat ante. Nullam convallis turpis quis iaculis rutrum.</p>
+                <p>{{ __('support.faq_questions.how_food_for_all_works.answer') }}</p>
               </div>
             </div>
         </div>
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                My account's having problems
+                {{ __('support.faq_questions.account_problems.question') }}
               </button>
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet arcu a dolor malesuada laoreet sit amet eu tortor. Fusce efficitur aliquam neque, at commodo turpis pretium sit amet. Aenean vehicula eros lacinia nibh pulvinar, nec vulputate mi ullamcorper. Nullam sed sodales tellus, quis feugiat ante. Nullam convallis turpis quis iaculis rutrum.</p>
+                <p>{{ __('support.faq_questions.account_problems.answer') }}</p>
               </div>
             </div>
         </div>
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingThree">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                How can I see my transactions?
+                {{ __('support.faq_questions.view_transactions.question') }}
               </button>
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet arcu a dolor malesuada laoreet sit amet eu tortor. Fusce efficitur aliquam neque, at commodo turpis pretium sit amet. Aenean vehicula eros lacinia nibh pulvinar, nec vulputate mi ullamcorper. Nullam sed sodales tellus, quis feugiat ante. Nullam convallis turpis quis iaculis rutrum.</p>
+                <p>{{ __('support.faq_questions.view_transactions.answer') }}</p>
               </div>
             </div>
         </div>
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingFour">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                How can I refund my transaction?
+                {{ __('support.faq_questions.refund_transaction.question') }}
               </button>
             </h2>
             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet arcu a dolor malesuada laoreet sit amet eu tortor. Fusce efficitur aliquam neque, at commodo turpis pretium sit amet. Aenean vehicula eros lacinia nibh pulvinar, nec vulputate mi ullamcorper. Nullam sed sodales tellus, quis feugiat ante. Nullam convallis turpis quis iaculis rutrum.</p>
+                <p>{{ __('support.faq_questions.refund_transaction.answer') }}</p>
               </div>
             </div>
         </div>
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingFive">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                How can I change my personal information?
+                {{ __('support.faq_questions.change_personal_info.question') }}
               </button>
             </h2>
             <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet arcu a dolor malesuada laoreet sit amet eu tortor. Fusce efficitur aliquam neque, at commodo turpis pretium sit amet. Aenean vehicula eros lacinia nibh pulvinar, nec vulputate mi ullamcorper. Nullam sed sodales tellus, quis feugiat ante. Nullam convallis turpis quis iaculis rutrum.</p>
+                <p>{{ __('support.faq_questions.change_personal_info.answer') }}</p>
               </div>
             </div>
         </div>
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingSix">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                Security and privacy concerned
+                {{ __('support.faq_questions.security_and_privacy.question') }}
               </button>
             </h2>
             <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet arcu a dolor malesuada laoreet sit amet eu tortor. Fusce efficitur aliquam neque, at commodo turpis pretium sit amet. Aenean vehicula eros lacinia nibh pulvinar, nec vulputate mi ullamcorper. Nullam sed sodales tellus, quis feugiat ante. Nullam convallis turpis quis iaculis rutrum.</p>
+                <p>{{ __('support.faq_questions.security_and_privacy.answer') }}</p>
               </div>
             </div>
         </div>
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingSeven">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                Does FoodForAll take a cut of my donations?
+                {{ __('support.faq_questions.donation_cut.question') }}
               </button>
             </h2>
             <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet arcu a dolor malesuada laoreet sit amet eu tortor. Fusce efficitur aliquam neque, at commodo turpis pretium sit amet. Aenean vehicula eros lacinia nibh pulvinar, nec vulputate mi ullamcorper. Nullam sed sodales tellus, quis feugiat ante. Nullam convallis turpis quis iaculis rutrum.</p>
+                <p>{{ __('support.faq_questions.donation_cut.answer') }}</p>
               </div>
             </div>
         </div>

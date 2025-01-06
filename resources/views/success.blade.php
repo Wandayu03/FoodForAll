@@ -1,20 +1,20 @@
 @extends('layout.master')
 
-@section('title', 'Donate')
+@section('title', __('success.title'))
 
 @section('content')
 <main class="main-container">
     <div class="success-container">
-        <h1>YOUR PAYMENT SUCCESS</h1>
+        <h1>{{ __('success.payment_success') }}</h1>
         <i class="fa-solid fa-circle-check"></i>
-        <p>Transaction ID: {{ $payment->transaction_id }}</p>
-        <p>Amount: Rp{{ number_format($payment->amount, 0, ',', '.') }}</p>
-        <p>Thank you for your donation!</p>
-        <a href="#" class="btn">SEE YOUR TRANSACTION</a>
+        <p>{{ __('success.transaction_id') }}: {{ $payment->transaction_id }}</p>
+        <p>{{ __('success.amount') }}: Rp{{ number_format($payment->amount, 0, ',', '.') }}</p>
+        <p>{{ __('success.thank_you') }}</p>
+        <a href="#" class="btn">{{ __('success.see_transaction') }}</a>
     </div>
 </main>
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/confpayment.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/confpayment.css') }}">
 @endpush

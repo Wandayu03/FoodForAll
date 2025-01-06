@@ -16,13 +16,13 @@
             <div class="col-md-6 side-image">
                 <img src="{{ asset('assets/img/Logo_Food_For_All_1 1.png') }}" alt="">
                 <div class="text">
-                    <h2>Digital platform for sharing with those in need</h2>
-                    <p>"Even the smallest acts of kindness—like a smile, a shared meal, or a helping hand—have the power to ripple outward, inspiring others and creating waves of meaningful change in our communities."</p>
+                    <h2>@lang('register.platform_description')</h2>
+                    <p>{{ __('register.kindness_quote') }}</p>
                 </div>
             </div>
             <div class="col-md-6 right">
                 <div class="input-box">
-                    <header>Registration</header>
+                    <header>{{ __('register.registration') }}</header>
                     @if ($errors->any())
                     <div style="background-color: #fff3cf; padding: 0.5rem; border-radius: 0.5rem">
                         @foreach ($errors->all() as $error)
@@ -33,30 +33,30 @@
                         @csrf
                         <div class="input-field">
                             <input type="text" class="input" name="name" required autocomplete="off">
-                            <label for="name">Name</label>
+                            <label for="name">{{ __('register.name') }}</label>
                         </div>
                         <div class="input-field">
                             <input type="email" class="input" name="email" required autocomplete="off">
-                            <label for="email">Email</label>
+                            <label for="email">{{ __('register.email') }}</label>
                         </div>
                         <div class="input-field">
                             <input type="password" class="input" name="password" required>
-                            <label for="password">Password</label>
+                            <label for="password">{{ __('register.password') }}</label>
                         </div>
                         <div class="input-field">
                             <input type="password" class="input" name="conPassword" required>
-                            <label for="conPassword">Confirmation Password</label>
+                            <label for="conPassword">{{ __('register.confirm_password') }}</label>
                         </div>
                         <div class="cekb">
                             <input type="checkbox" class="cek" name="terms" required>
-                            <label for="cekbok">I accept <u>terms and condition</u></label>
+                            <label for="cekbok">{{ __('register.i_accept') }} <u>{{ __('register.terms_and_conditions') }}</u></label>
                         </div>
                         <div class="input-field">
-                            <input type="submit" class="submit" value="Register">       
+                            <input type="submit" class="submit" value="{{ __('register.register') }}">       
                         </div>
                     </form>
                     <div class="signin">
-                        <span>Already have an account? <a href="{{ route('login') }}">Log in</a></span>
+                        <span>{{ __('register.already_have_account') }}<a href="{{ route('login') }}">Log in</a></span>
                     </div>
                 </div>
             </div>

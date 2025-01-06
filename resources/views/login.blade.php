@@ -17,8 +17,8 @@
             </div>
             <div class="col-md-6 right">
                 <div class="input-box">
-                    <header>Welcome Back!</header>
-                    <h1>Hey, Enter your detail to get sign into your account</h1>
+                    <header>{{ __('login.welcome_back') }}</header>
+                    <h1>{{ __('login.login_prompt') }}</h1>
                     @if ($errors->any())
                         <div style="background-color: #e8c872; padding: 0.5rem; border-radius: 0.5rem">
                             @foreach ($errors->all() as $error)
@@ -29,23 +29,23 @@
                         @csrf
                         <div class="input-field">
                             <input type="email" class="input" id="email" name="email" required autocomplete="off">
-                            <label for="email">Email</label>
+                            <label for="email">{{ __('login.email') }}</label>
                         </div>
                         <div class="input-field">
                             <input type="password" class="input" id="password" name="password" required>
-                            <label for="password">Password</label>
+                            <label for="password">{{ __('login.password') }}</label>
                         </div>
                         <div class="forgot">
-                            <a href="#">Forgot Password or Email?</a>
+                            <a href="#">{{ __('login.forgot_password') }}</a>
                         </div>
                         <br>
                         <div class="cekb">
                             <input type="checkbox" class="cek" id="checkbox" required>
-                            <label for="cekbok"><u>Remember Me?</u></label>
+                            <label for="cekbok"><u>{{ __('login.remember_me') }}</u></label>
                         </div>
                         <br>
                         <div class="input-field">
-                            <input type="submit" class="submit" value="Login">
+                            <input type="submit" class="submit" value="{{ __('login.login') }}">
                         </div>
                     </form>
                     <div class="signin">

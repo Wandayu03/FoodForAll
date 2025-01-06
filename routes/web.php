@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\LoginControleer;
 use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +12,13 @@ use App\Http\Controllers\ShareController;
 use App\Http\Controllers\TrackingController;
 use App\Models\History;
 
+Route::get('/set-locale/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'id'])) {
+        session(['locale' => $locale]);
+        // dd($locale);
+    }
+    return redirect()->back();
+})->name('set-locale');
 
 Route::get('/', function () {
     return view('home');
@@ -38,7 +46,6 @@ Route::post('/share-a-meal', [ShareController::class, 'store'])->name('share.cre
 Route::get( '/payment',  [PaymentController::class, 'showForm'])->name('payment.show');
 Route::post('/payment/notification', [PaymentController::class, 'paymentNotification'])->name('payment.notification');
 Route::get('/payment/success/{transaction_id}', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
-
 
 Route::get('/about', function () {
     return view('about');

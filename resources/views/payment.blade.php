@@ -4,9 +4,9 @@
 
 @section('content')
 <div class="payment-detail">  
-    <h1>Payment Form</h1>
-    <p>You will make a payment</p>
-    <p>at a price of</p>
+    <h1>{{ __('payment.payment_form') }}/h1>
+    <p>{{ __('payment.you_will_make_a_payment_of') }}</p>
+    <p>{{ __('payment.at_a_price_of') }}</p>
     <p class="price">
       @if(isset($share))
           Rp{{ number_format($share->budget, 0, ',', '.') }}
@@ -14,7 +14,7 @@
           Rp{{ number_format($donation->amount, 0, ',', '.') }}
       @endif
     </p>
-    <button id="payButton">Pay Now</button>
+    <button id="payButton">{{ __('payment.pay_now') }}</button>
 </div>
 @endsection
 

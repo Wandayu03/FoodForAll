@@ -5,7 +5,7 @@
 @section('content')
 <div>
     <div class="hero">
-        <p>DONATE NOW</p>
+        <p>{{ __('donate.donate_now') }}</p>
     </div>
     <div class="all-wrapper">
         <!-- Form mengirim Data -->
@@ -13,7 +13,7 @@
             @csrf
             <!-- Pilih jumlah donasi -->
             <div class="choose-price">
-                <p class="choose-price-title">Choose an Amount</p>
+                <p class="choose-price-title">{{ __('donate.choose_amount') }}</p>
                 <div class="choose-price-radio">
                     <input type="radio" id="amount-30k" name="amount" value="30000">
                     <label for="amount-30k" class="custom-label">Rp 30.000</label>
@@ -30,17 +30,17 @@
             </div>
             <!-- input jumlah donasi -->
             <div class="enter-price">
-                <p class="header-text">Enter Your Own</p>
+                <p class="header-text">{{ __('donate.enter_own_amount') }}</p>
                 <div class="enter-price-detail">
                     <label for="custom-amount">Rp</label>
                     <input type="number" name="amount" placeholder="350000" required>
                 </div>
-                <p class="notes">Minimum donation of Rp 10.000</p>
+                <p class="notes">{{ __('donate.minimum_donation') }}</p>
             </div>
             <!-- submit donasi -->
             <div class="continue-payment-wrapper">
                 <div class="continue-payment">
-                    <input type="submit" class="submit" value="Continue Process">
+                    <input type="submit" class="submit" value="{{ __('donate.continue_process') }}">
                 </div>
             </div>
         </form>
