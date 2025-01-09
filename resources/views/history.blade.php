@@ -27,6 +27,7 @@
                         <img src="https://via.placeholder.com/40" alt="Profile Icon" class="rounded-circle me-3" style="width: 40px; height: 40px;">
                         <strong>{{ $history->user->name }}</strong>
                     </div>
+                    @if ($history->donations)
                         <h5 class="card-title mb-4 my-4">{{ __('history.made_donation') }} {{ $history->donations->amount }}</h5>
 
                         <div class="d-flex justify-content-between align-items-center">
@@ -37,8 +38,9 @@
                                 @else
                                     <span class="status-box status-active" style="background-color: gray">{{ $history->donations->status }}</span>
                                 @endif
-                            </div>
+                            </div> 
                         </div>
+                    @endif
                 </div>
             </div>
         @else

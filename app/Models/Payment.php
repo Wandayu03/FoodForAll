@@ -30,4 +30,8 @@ class Payment extends Model
     public function donation(){
         return $this->belongsTo(Donation::class);
     }
+
+    public function trackings(){
+        return $this->hasMany(Tracking::class);
+    }
 }

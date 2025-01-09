@@ -10,7 +10,7 @@
         <p>{{ __('success.transaction_id') }}: {{ $payment->transaction_id }}</p>
         <p>{{ __('success.amount') }}: Rp{{ number_format($payment->amount, 0, ',', '.') }}</p>
         <p>{{ __('success.thank_you') }}</p>
-        <a href="#" class="btn">{{ __('success.see_transaction') }}</a>
+        <a href="{{ route('history', ['type'=>'all']) }}" class="btn">{{ __('success.see_transaction') }}</a>
     </div>
 </main>
 @endsection

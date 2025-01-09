@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="payment-detail">  
-    <h1>{{ __('payment.payment_form') }}/h1>
+    <h1>{{ __('payment.payment_form') }}</h1>
     <p>{{ __('payment.you_will_make_a_payment_of') }}</p>
     <p>{{ __('payment.at_a_price_of') }}</p>
     <p class="price">
