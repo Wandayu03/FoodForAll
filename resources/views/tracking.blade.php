@@ -76,7 +76,7 @@
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/tracking.css') }}">
+<link rel="stylesheet" href="{{secure_asset('assets/css/tracking.css') }}">
 @endpush
 @push('scripts')
 <script>

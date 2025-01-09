@@ -102,7 +102,7 @@
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/history.css') }}">
+<link rel="stylesheet" href="{{secure_asset('assets/css/history.css') }}">
 <script>
     document.getElementById('filter').addEventListener('change', function () {
         const type = this.value; 
