@@ -30,12 +30,18 @@ class TrackingController extends Controller
             $photoUrl = $upload;
         }
     
-        Tracking::create([
+        $obj = Tracking::create([
             'share_id' => $share_id,
             'status' => $validated['status'],
             'description' => $validated['description'],
             'photo_url' => $photoUrl,
         ]);
+
+        if($obj->status === "Process is completed"){
+            $share = Share::find($obj->share_id);
+            $share->status = 'completed';
+            $share->save();
+        }
     
         return redirect()->back()->with('success', 'Tracking updated successfully!');
     }
