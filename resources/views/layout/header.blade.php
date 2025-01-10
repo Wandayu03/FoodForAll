@@ -33,7 +33,6 @@
                         </ul>
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4">
-                        
                         @if (Auth::check() && Auth::user()->is_admin==1)
                         <a class="nav-link active" aria-current="page" href={{ route('manage', ['type'=>'all']) }}>Manage</a>
                         @else
