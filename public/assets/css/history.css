@@ -32,3 +32,9 @@
 span {
     font-size: 18px;
 }
+
+@media (max-width: 768px) {
+    .history-detail {
+        display: none !important;
+    }
+}

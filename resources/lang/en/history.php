@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'history' => 'History',
+    'history' => 'Trasanction Histories',
     'filter' => 'Filter',
     'all' => 'All',
     'donation' => 'Donation',

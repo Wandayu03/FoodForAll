@@ -11,14 +11,15 @@ html {
     padding: 0;
     height: 100%;
     background-color: #f4f4f9;
+    min-height: 100vh;
 }
 
 main.content {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    flex-direction: row;
+    margin: 0 auto;
+    justify-content: space-evenly;
+    min-height: 60vh;
     padding: 20px;
     box-sizing: border-box;
 }
@@ -30,6 +31,18 @@ main.content {
     padding: 20px;
     width: 90%;
     max-width: 600px;
+    margin: 5px;
+}
+
+.tracking-manager {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    height: 27rem;
+    margin: 5px;
 }
 
 .headers {
@@ -57,6 +70,7 @@ main.content {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px 5px;
 }
 
 .step,
@@ -137,4 +151,91 @@ main.content {
     margin-right: 8px;
     font-size: 16px;
     color: #2196f3;
+}
+
+.tracking-manager form {
+    margin: 0 auto;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.tracking-manager select,
+.tracking-manager textarea,
+.tracking-manager input {
+    border-radius: 1rem;
+    background-color: #eeeeee;
+    border: none;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.tracking-manager input:focus,
+.tracking-manager textarea:focus {
+    outline: none;
+}
+
+.tracking-manager textarea {
+    height: 5rem;
+    resize: none;
+}
+
+.tracking-manager button {
+    width: 20%;
+    min-width: 100px;
+    margin-top: 1rem;
+    background-color: #637a9f;
+    padding: 0.5rem;
+    color: white;
+    border: none;
+    border-radius: 1rem;
+}
+
+.button-container {
+    display: flex;
+    align-items: center; /* Align vertically */
+}
+
+#loadingIndicator {
+    display: flex;
+    align-items: center;
+}
+
+.spinner {
+    border: 2px solid transparent;
+    border-top: 2px solid #000;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    margin-left: 5px; /* Space between the button and spinner */
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.custom-file-input::-webkit-file-upload-button {
+    display: none;
+}
+
+.custom-file-input::before {
+    content: "Upload image";
+    background-color: white;
+    border-radius: 0.7rem;
+    padding: 0.4rem;
+    outline: none;
+    cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+    main.content {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
 }

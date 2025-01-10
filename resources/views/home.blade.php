@@ -19,6 +19,10 @@
         </div>
 
         <div class="fitur">
+          <div class="header">
+                <h1 class="title">{{ __('home.help_other_title') }}<br />{{ __('home.other') }}</h1>
+                <p class="subtitle">{{ __('home.what_we_offer') }}</p>
+            </div>
             <div class="content">
               <div class="card">
                 <img class="icon" src="assets/img/imageDonation.png" alt="Icon 1" />
@@ -37,10 +41,6 @@
                 <a href="{{ route('share') }}">{{ __('home.explore_rent_for_sharing') }}</a>
               </div>
             </div>
-            <div class="header">
-                <h1 class="title">{{ __('home.help_other_title') }}<br />{{ __('home.other') }}</h1>
-                <p class="subtitle">{{ __('home.what_we_offer') }}</p>
-              </div>
         </div>
         
         <div class="about-us-home">
