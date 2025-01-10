@@ -32,7 +32,7 @@
                         <h5 class="card-title mb-4 my-4"> {{$history->user->name}} has made a donation of Rp.{{ $history->donations->amount }}</h5>
                         @else
                         <h5 class="card-title mb-4 my-4">{{ __('history.made_donation') }} {{ $history->donations->amount }}</h5>
-                        @endif
+                         @endif
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <span>{{ __('history.status') }}</span>

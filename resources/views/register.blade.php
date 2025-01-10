@@ -30,7 +30,7 @@
                        <span style="color: black">{{$error}}</span> 
                     @endforeach</div><br>
                     @endif
-                    <form action="{{ secure_route('register') }}" method="POST">
+                    <form action="{{ secure_url('/register') }}" method="POST">
                         @csrf
                         <div class="input-field">
                             <input type="text" class="input" name="name" required autocomplete="off">

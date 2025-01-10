@@ -30,7 +30,7 @@ Route::get('/login', function () {
 Route::post('/login', [LoginControleer::class, 'login']);
 Route::get('/logout', [LoginControleer::class, 'logout'])->name('logout');
 
-Route::get('register', [RegisterController::class, 'showRegistForm'])->name('register')->middleware('guest');
+Route::get('/register', [RegisterController::class, 'showRegistForm'])->name('register')->middleware('guest');
 Route::post('register', [RegisterController::class, 'register']);
 
 Route::get('/donate', function () {

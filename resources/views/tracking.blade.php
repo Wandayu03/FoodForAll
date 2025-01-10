@@ -49,7 +49,7 @@
         <div class="headers">
             <h2>Tracking Manager</h2>
         </div>
-        <form method="POST" action="{{ secure_route('trackingcreate', ['id'=>$share->id]) }}" enctype="multipart/form-data" id="updateForm">
+        <form method="POST" action="{{ secure_url('/tracking/{id}', ['id'=>$share->id]) }}" enctype="multipart/form-data" id="updateForm">
             @csrf
             <label for="status">Update Status</label>
             <select name="status" id="status" required>
