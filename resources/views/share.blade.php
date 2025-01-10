@@ -59,6 +59,6 @@
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{asset('assets/css/share.css') }}">
+<link rel="stylesheet" href="{{secure_asset('assets/css/share.css') }}">
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 @endpush

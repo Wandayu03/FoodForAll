@@ -16,5 +16,5 @@
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{asset('assets/css/confpayment.css') }}">
+<link rel="stylesheet" href="{{secure_asset('assets/css/confpayment.css') }}">
 @endpush
