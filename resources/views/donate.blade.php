@@ -9,7 +9,7 @@
     </div>
     <div class="all-wrapper">
         <!-- Form mengirim Data -->
-        <form action="{{ secure_url('donationcreate') }}" method="POST">
+        <form action="{{ secure_route('donationcreate') }}" method="POST">
             @csrf
             <!-- Pilih jumlah donasi -->
             <div class="choose-price">
