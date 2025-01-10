@@ -44,7 +44,7 @@
             </div>
         </div>
     </div>
-    @if (Auth::user()->is_admin==1)
+    @if (Auth::check() && Auth::user()->is_admin==1)
     <div class="tracking-manager">
         <div class="headers">
             <h2>Tracking Manager</h2>

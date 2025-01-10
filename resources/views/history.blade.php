@@ -28,7 +28,7 @@
                         <strong>{{ $history->user->name }}</strong>
                     </div>
                     @if ($history->donations)
-                        @if (Auth::user()->is_admin==1)
+                        @if (Auth::check() && Auth::user()->is_admin==1)
                         <h5 class="card-title mb-4 my-4"> {{$history->user->name}} has made a donation of Rp.{{ $history->donations->amount }}</h5>
                         @else
                         <h5 class="card-title mb-4 my-4">{{ __('history.made_donation') }} {{ $history->donations->amount }}</h5>
@@ -59,7 +59,7 @@
                     </div>
 
                     @if ($history->shares)
-                        @if (Auth::user()->is_admin==1)
+                        @if (Auth::check() && Auth::user()->is_admin==1)
                             <h5 class="card-title mb-4 my-4">Event '{{ $history->shares->event_name }}' created by {{$history->user->name}}, with a budget of Rp.{{$history->shares->budget}}</h5>
                         @else
                             <h5 class="card-title mb-4 my-4">You make an event called '{{ $history->shares->event_name }}'. In order to distribute '{{ $history->shares->food_type }}' to {{ $history->shares->estimated_people }} people.</h5>
@@ -82,7 +82,7 @@
                                 @endif
                             </div>
                             <div class="view">
-                                @if (Auth::user()->is_admin==1)
+                                @if (Auth::check() && Auth::user()->is_admin==1)
                                 <a href={{ route('tracking', ['id' => $history->shares->id]) }} class="btn btn-link">Report >></a>
                                 @else
                                 <a href={{ route('tracking', ['id' => $history->shares->id]) }} class="btn btn-link">{{ __('history.view') }} >></a>
