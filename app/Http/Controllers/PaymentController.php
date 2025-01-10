@@ -128,6 +128,141 @@ class PaymentController extends Controller
         }
     }
 
+    // public function paymentSuccess($transaction_id) {
+    //     $payment = Payment::where('transaction_id', $transaction_id)->first();
+    
+    //     if ($payment) {
+    //         $this->updatePaymentAndRelatedStatus($payment, 'success');
+    //         return view('success', compact('payment'));
+    //     } else {
+    //         return redirect()->route('payment.failure');
+    //     }
+    // }
+    
+    // public function paymentNotification(Request $request)
+    // {
+    //     $request->validate([
+    //         'transaction_status' => 'required',
+    //         'order_id' => 'required',
+    //     ]);
+    
+    //     try {
+    //         $notification = new Notification();
+    
+    //         $transactionStatus = $notification->transaction_status;
+    //         $orderId = $notification->order_id;
+    
+    //         Log::info("Transaction Status: " . $transactionStatus); 
+    //         Log::info("Order ID: " . $orderId);
+    
+    //         $payment = Payment::where('transaction_id', $orderId)->first();
+    
+    //         if ($payment) {
+    //             if (in_array($transactionStatus, ['capture', 'settlement', 'success'])) {
+    //                 $this->updatePaymentAndRelatedStatus($payment, 'success');
+    //                 Log::info("Payment and related status updated to success");
+    //             } elseif ($transactionStatus === 'pending') {
+    //                 $this->updatePaymentAndRelatedStatus($payment, 'pending');
+    //                 Log::info("Payment and related status updated to pending");
+    //             } elseif (in_array($transactionStatus, ['deny', 'expire', 'cancel'])) {
+    //                 $this->updatePaymentAndRelatedStatus($payment, 'failed');
+    //                 Log::info("Payment and related status updated to failed");
+    //             }
+    //         }
+    
+    //         return response()->json(['message' => 'Notification processed successfully'], 200);
+    //     } catch (\Exception $e) {
+    //         Log::error("Payment Notification Error: " . $e->getMessage());
+    //         return response()->json(['message' => 'Failed to process notification'], 500);
+    //     }
+    // }
+    
+
+    public function processPayment($id)
+{
+    $donation = Donation::findOrFail($id);
+
+    $existingPayment = Payment::where('donation_id', $donation->id)
+                               ->where('status', 'pending')
+                               ->first();
+
+    if ($existingPayment) {
+        // Inform the user that a payment is already pending
+        Log::info('Existing pending payment found for donation ID ' . $donation->id);
+        // return redirect()->route('history', ['type' => 'donation'])
+                        //  ->with('error', 'A payment for this transaction is already pending. Please complete or cancel it before trying again.');
+    }
+
+    if ($donation->status == 'pending') {
+
+        Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+        Config::$isProduction = false;  // Ubah sesuai lingkungan Anda
+        Config::$isSanitized = true;
+        Config::$is3ds = true;
+
+        
+
+        $uniqueOrderId = 'DONATION-' . $donation->id . '-' . time(); // or use uniqid()
+
+        $transactionDetails = [
+            'order_id' => $uniqueOrderId,
+            'gross_amount' => $donation->amount,
+        ];
+
+        $customerDetails = [
+            'first_name' => Auth::user()->name,
+            'email' => Auth::user()->email,
+        ];
+
+        $snapToken = Snap::getSnapToken([
+            'transaction_details' => $transactionDetails,
+            'customer_details' => $customerDetails,
+        ]);
+
+        $payment = Payment::create([
+            'user_id' => Auth::id(),
+            'donation_id' => $donation->id,
+            'transaction_id' => $transactionDetails['order_id'],
+            'activity_type' => 'donation',
+            'amount' => $donation->amount,
+            'status' => 'pending',
+            'snap_token' => $snapToken
+        ]);
+
+        return view('payment', ['snapToken' => $snapToken, 'donation' => $donation, 'payment' => $payment]);
+    }
+
+    return redirect()->route('history', ['type' => 'donation'])->with('error', 'Donation payment is not pending.');
+}
+
+public function showPaymentDetail($id)
+{
+    // Ambil detail pembayaran (contoh untuk share atau donation)
+    $share = Share::find($id); // atau model lain yang sesuai
+    $donation = null; // atau logika pengambilan data lainnya
+
+    // Dapatkan snapToken dari Midtrans (pastikan Anda menggunakan kode yang sesuai untuk kebutuhan)
+    $params = [
+        'transaction_details' => [
+            'order_id' => 'ORDER-' . uniqid(),
+            'gross_amount' => $share ? $share->budget : ($donation ? $donation->amount : 0),
+        ],
+        // Tambahkan parameter lainnya sesuai kebutuhan
+    ];
+
+    // Memanggil Midtrans Snap API
+    Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+    Config::$isProduction = false;
+    Config::$isSanitized = true;
+    Config::$is3ds = true;
+
+    $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+    return view('payment', compact('share', 'donation', 'snapToken'));
+}
+
+
+
     // public function paymentSuccess($transaction_id)
     // {
     //     $payment = Payment::where('transaction_id', $transaction_id)->first();

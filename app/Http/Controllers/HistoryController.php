@@ -7,7 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HistoryController extends Controller
-{
+{   
+    public function showForm()
+    {
+        return view('payment');
+    }
     public function getHistory($type){
         $id = Auth::user()->id;
         $query = History::where('user_id', $id);

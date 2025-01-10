@@ -36,7 +36,13 @@
                                     <span class="status-box status-active">{{ $history->donations->status }}</span>
                                 @else
                                     <span class="status-box status-active" style="background-color: gray">{{ $history->donations->status }}</span>
+                                    <!-- <a href="{{ route('payment.process', ['id' => $history->donations->id]) }}" class="btn btn-primary mt-2">{{ __('history.pay_now') }}</a> -->
+                                    <!-- <button class="btn btn-primary mt-2" onclick="window.location.href='{{ route('payment.process', ['id' => $history->donations->id]) }}'">{{ __('history.pay_now') }}</button> -->
+                                    <button id="payButton" class="btn btn-primary" onclick="window.location.href='{{ route('payment.process', ['id' => $history->donations->id]) }}'">
+                                        {{ __('payment.pay_now') }}
+                                    </button>
                                 @endif
+
                             </div>
                         </div>
                 </div>
