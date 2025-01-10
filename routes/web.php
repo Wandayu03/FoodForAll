@@ -36,12 +36,12 @@ Route::post('register', [RegisterController::class, 'register']);
 Route::get('/donate', function () {
     return view('donate');
 })->name('donate')->middleware('auth');
-Route::post('/donate', [DonationController::class, 'store'])->name('donation.create');
+Route::post('/donate', [DonationController::class, 'store'])->name('donationcreate');
 
 Route::get('/share-a-meal', function () {
     return view('share');
 })->name('share')->middleware('auth');
-Route::post('/share-a-meal', [ShareController::class, 'store'])->name('share.create');
+Route::post('/share-a-meal', [ShareController::class, 'store'])->name('sharecreate');
 
 Route::get( '/payment',  [PaymentController::class, 'showForm'])->name('payment.show');
 Route::post('/payment/notification', [PaymentController::class, 'paymentNotification'])->name('payment.notification');
@@ -59,7 +59,7 @@ Route::get('/support', function () {
 Route::get('/history/{type}', [HistoryController::class, 'getHistory'])->name('history')->middleware('auth');
 
 Route::get('/tracking/{id}', [TrackingController::class, 'getTracking'])->name('tracking')->middleware('auth');
-Route::post('/tracking/{id}', [TrackingController::class, 'store'])->name('tracking.create')->middleware('admin');
+Route::post('/tracking/{id}', [TrackingController::class, 'store'])->name('trackingcreate')->middleware('admin');
 
 Route::get('/manage/{type}', [HistoryController::class, 'getAll'])->name('manage')->middleware('admin');
 
