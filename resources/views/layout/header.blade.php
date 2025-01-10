@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg py-4 py-lg-0 shadow">
         <div class="container px-4">
-            <img src="{{secure_asset('assets/img/Logo FoodFor All.png') }}" alt="">
+            <img src="{{asset('assets/img/Logo FoodFor All.png') }}" alt="">
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#top-navbar" aria-controls="top-navbar">
                 <i class="lni lni-dashboard-square-1"></i>
             </button>

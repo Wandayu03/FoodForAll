@@ -49,7 +49,7 @@
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{secure_asset('assets/css/donate.css') }}">
+<link rel="stylesheet" href="{{asset('assets/css/donate.css') }}">
 @endpush
 
 @push('scripts')

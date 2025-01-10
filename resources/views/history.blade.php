@@ -46,12 +46,8 @@
                                         {{ __('payment.pay_now') }}
                                     </button>
                                 @endif
-<<<<<<< HEAD
 
                             </div>
-=======
-                            </div> 
->>>>>>> 68cb335e6b12c5694cbc1b2ed14a401e394ffeff
                         </div>
                     @endif
                 </div>
@@ -114,7 +110,7 @@
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{secure_asset('assets/css/history.css') }}">
+<link rel="stylesheet" href="{{asset('assets/css/history.css') }}">
 <script>
     document.getElementById('filter').addEventListener('change', function () {
         const type = this.value; 

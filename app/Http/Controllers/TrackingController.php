@@ -15,7 +15,7 @@ class TrackingController extends Controller
         $trackings = Tracking::where('share_id', $id)->get(); 
         $share = Share::find($id);
 
-        return view('tracking', compact('trackings', 'share', 'payment'));
+        return view('tracking', compact('trackings', 'share'));
     }
 
     public function store(Request $request, $share_id) {
