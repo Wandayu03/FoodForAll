@@ -88,4 +88,11 @@ body {
         max-width: 90%;
         padding: 2rem 2rem;
     }
+
+    .support-form,
+    .faq {
+        max-width: 95vw;
+        margin: 0 auto;
+        padding: 3.5rem;
+    }
 }
