@@ -46,12 +46,7 @@
                                         {{ __('payment.pay_now') }}
                                     </button>
                                 @endif
-<<<<<<< HEAD
-
-                            </div>
-=======
                             </div> 
->>>>>>> 68cb335e6b12c5694cbc1b2ed14a401e394ffeff
                         </div>
                     @endif
                 </div>
