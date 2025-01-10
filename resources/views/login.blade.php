@@ -26,7 +26,7 @@
                            <span >{{$error}}</span> 
                         @endforeach</div><br>
                     @endif
-                    <form action="{{ url('login') }}" method="POST">
+                    <form action="{{ secure_url('login') }}" method="POST">
                         @csrf
                         <div class="input-field">
                             <input type="email" class="input" id="email" name="email" required autocomplete="off">

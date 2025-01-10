@@ -13,7 +13,7 @@
     </div>
     <div class="order-detail">
         <p class="order-detail-title">Order Details</p>
-        <form action="{{ route('share.create') }}" method="POST">
+        <form action="{{ secure_url('share.create') }}" method="POST">
             @csrf
             <div class="order-detail-all">
                 <div class="order-detail-left">
