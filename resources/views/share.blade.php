@@ -4,7 +4,7 @@
 
 @section('content')
 <div>
-    <div class="hero" style="background-image: url('{{ asset('assets/img/Hero-RentPage.png') }}')">
+    <div class="hero" style="background-image: url('{{secure_asset('assets/img/Hero-RentPage.png') }}')">
         <div class="color"></div>
         <p>{{ __('share.every_contribution') }}<span>{{ __('share.make_difference') }}</span></p>
     </div>
@@ -43,7 +43,7 @@
                         <input type="date" name="distribution_date" required>
                     </div>
                     <div class="distribution-location">
-                        <p>{{ __('share.distribution_location') }}/p>
+                        <p>{{ __('share.distribution_location') }}</p>
                         <input type="text" placeholder="Example: orphanages or street workers like scavengers" name="distribution_address" required>
                     </div>
                 </div>
@@ -59,6 +59,6 @@
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/share.css') }}">
+<link rel="stylesheet" href="{{secure_asset('assets/css/share.css') }}">
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 @endpush

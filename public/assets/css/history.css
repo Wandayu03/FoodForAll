@@ -34,6 +34,7 @@ span {
     font-size: 18px;
 }
 
+<<<<<<< HEAD
 #payButton {
     font-size: 12px;
     padding: 10px 25px;
@@ -52,3 +53,10 @@ span {
 #payButton:hover {
     background-color: #a66e38;
 }
+=======
+@media (max-width: 768px) {
+    .history-detail {
+        display: none !important;
+    }
+}
+>>>>>>> 68cb335e6b12c5694cbc1b2ed14a401e394ffeff

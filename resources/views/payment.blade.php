@@ -4,7 +4,11 @@
 
 @section('content')
 <div class="payment-detail">  
+<<<<<<< HEAD
     <h1>{{ __('payment.payment_form') }}
+=======
+    <h1>{{ __('payment.payment_form') }}</h1>
+>>>>>>> 68cb335e6b12c5694cbc1b2ed14a401e394ffeff
     <p>{{ __('payment.you_will_make_a_payment_of') }}</p>
     <p>{{ __('payment.at_a_price_of') }}</p>
     <p class="price">
@@ -19,7 +23,7 @@
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/paymentdetail.css') }}">
+<link rel="stylesheet" href="{{secure_asset('assets/css/paymentdetail.css') }}">
 @endpush
 
 @push('scripts')

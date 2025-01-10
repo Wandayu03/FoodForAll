@@ -27,8 +27,12 @@
                         <img src="https://via.placeholder.com/40" alt="Profile Icon" class="rounded-circle me-3" style="width: 40px; height: 40px;">
                         <strong>{{ $history->user->name }}</strong>
                     </div>
+                    @if ($history->donations)
+                        @if (Auth::user()->is_admin==1)
+                        <h5 class="card-title mb-4 my-4"> {{$history->user->name}} has made a donation of Rp.{{ $history->donations->amount }}</h5>
+                        @else
                         <h5 class="card-title mb-4 my-4">{{ __('history.made_donation') }} {{ $history->donations->amount }}</h5>
-
+                         @endif
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <span>{{ __('history.status') }}</span>
@@ -42,9 +46,14 @@
                                         {{ __('payment.pay_now') }}
                                     </button>
                                 @endif
+<<<<<<< HEAD
 
                             </div>
+=======
+                            </div> 
+>>>>>>> 68cb335e6b12c5694cbc1b2ed14a401e394ffeff
                         </div>
+                    @endif
                 </div>
             </div>
         @else
@@ -56,19 +65,20 @@
                     </div>
 
                     @if ($history->shares)
-                        <h5 class="card-title mb-4 my-4">You make an event called '{{ $history->shares->event_name }}'. In order to distribute {{ $history->shares->food_type }} to {{ $history->shares->estimated_people }} with a budget of Rp. {{ $history->shares->budget }}</h5>
-
+                        @if (Auth::user()->is_admin==1)
+                            <h5 class="card-title mb-4 my-4">Event '{{ $history->shares->event_name }}' created by {{$history->user->name}}, with a budget of Rp.{{$history->shares->budget}}</h5>
+                        @else
+                            <h5 class="card-title mb-4 my-4">You make an event called '{{ $history->shares->event_name }}'. In order to distribute '{{ $history->shares->food_type }}' to {{ $history->shares->estimated_people }} people.</h5>
+                         @endif   
                         <div class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex align-items-center mb-1">
+                            <div class="d-flex align-items-center mb-1 history-detail">
                                 <i class="fa-solid fa-calendar me-2"></i>
                                 <span>{{ $history->shares->distribution_date }}</span>
                             </div>
-
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center history-detail">
                                 <i class="fa-solid fa-location-dot me-2"></i>
                                 <span>{{ $history->shares->distribution_address }}</span>
                             </div>
-
                             <div>
                                 <span>{{ __('history.status') }}</span>
                                 @if ($history->shares->status == "completed")    
@@ -77,13 +87,16 @@
                                     <span class="status-box status-active" style="background-color: gray">{{ $history->shares->status }}</span>
                                 @endif
                             </div>
-
                             <div class="view">
+                                @if (Auth::user()->is_admin==1)
+                                <a href={{ route('tracking', ['id' => $history->shares->id]) }} class="btn btn-link">Report >></a>
+                                @else
                                 <a href={{ route('tracking', ['id' => $history->shares->id]) }} class="btn btn-link">{{ __('history.view') }} >></a>
+                                @endif    
                             </div>
                         </div>
                         @else
-                            <p class="text-muted">{{ __('history.no_share_details') }}<</p>
+                            <h5 class="text-muted">{{ __('history.no_share_details') }}</h5>
                         @endif
                     </div>
                 </div>
@@ -93,17 +106,21 @@
         <div class="d-flex justify-content-center mt-4">
         {{ $histories->links('pagination::bootstrap-5') }}
         </div>
+    @else
+    <div class="card mb-4">You haven't made a contribution yet</div>
     @endif
     </div>
 </div>
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/history.css') }}">
+<link rel="stylesheet" href="{{secure_asset('assets/css/history.css') }}">
 <script>
     document.getElementById('filter').addEventListener('change', function () {
         const type = this.value; 
-        const url = `/history/${type}`; 
+        const is_admin = "{{ Auth::user()->is_admin }}";
+        const url = is_admin == 1 ? `/manage/${type}` : `/history/${type}`;
+        // const url = `/history/${type}`; 
         window.location.href = url;
     });
 </script>

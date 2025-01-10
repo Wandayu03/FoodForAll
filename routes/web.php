@@ -59,5 +59,7 @@ Route::get('/support', function () {
 Route::get('/history/{type}', [HistoryController::class, 'getHistory'])->name('history')->middleware('auth');
 
 Route::get('/tracking/{id}', [TrackingController::class, 'getTracking'])->name('tracking')->middleware('auth');
+Route::post('/tracking/{id}', [TrackingController::class, 'store'])->name('tracking.create')->middleware('auth', 'admin');
 
+Route::get('/manage/{type}', [HistoryController::class, 'getAll'])->name('manage')->middleware('auth', 'admin');
 

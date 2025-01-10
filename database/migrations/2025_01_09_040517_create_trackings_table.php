@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('trackings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('share_id')->onDelete('cascade');
-            $table->enum('status', ['Donation accepted', 'Order in process', 'Food is ready', 'Food has been distributed', 
-            'Process is complete'])->default('Donation accepted');
+            $table->enum('status', ['Donation accepted', 'Order in process', 'Food is ready', 'Food has been distributed', 'Process is completed'])->default('Donation accepted');
             $table->text('description')->nullable(); 
-            $table->string('photo_url')->nullable();  
+            $table->string('photo_url')->nullable(); 
             $table->timestamps();
         });
     }

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'history' => 'Riwayat',
+    'history' => 'Riwayat Trasaksi',
     'filter' => 'Filter',
     'all' => 'Semua',
     'donation' => 'Donasi',

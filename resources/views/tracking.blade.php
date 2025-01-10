@@ -1,5 +1,4 @@
 @extends('layout.master')
-
 @section('title', __('tracking.title'))
 
 @section('content')
@@ -7,7 +6,6 @@
     <div class="containers">
         <div class="headers">
             <h2>{{$share->event_name}}</h2>
-            {{-- kalo payment udh kelar pake yg bawah --}}
         </div>
         <div class="timeline">
             <div class="step">
@@ -25,8 +23,10 @@
                     @if ($tracking->photo_url != NULL)
                         <img src="{{$tracking->photo_url}}">
                     @endif
+                    
             </div>
             @endforeach
+        </div>
         <div class="order-info">
             <div class="info-row">
                 <i class="fa-solid fa-calendar me-2"></i>
@@ -36,7 +36,7 @@
             <div class="info-row">
                 <i class="fa-solid fa-location-dot me-2"></i>
                 <p>{{$share->distribution_address}}</p>
-                <p class="right">{{ __('tracking.payment_status_label') }}: {{$share->status}}</p>
+                <p class="right">{{ __('tracking.payment_status_label') }}: {{$share->payment->status}}</p>
             </div>
             <div class="info-row">
                 <p>{{ __('tracking.donation_label') }}: Rp {{$share->budget}},-</p>
@@ -44,9 +44,47 @@
             </div>
         </div>
     </div>
+    @if (Auth::user()->is_admin==1)
+    <div class="tracking-manager">
+        <div class="headers">
+            <h2>Tracking Manager</h2>
+        </div>
+        <form method="POST" action="{{ route('tracking.create', ['id'=>$share->id]) }}" enctype="multipart/form-data" id="updateForm">
+            @csrf
+            <label for="status">Update Status</label>
+            <select name="status" id="status" required>
+                <option value="Order in process">Order in process</option>
+                <option value="Food is ready">Food is ready</option>
+                <option value="Food has been distributed">Food has been distributed</option>
+                <option value="Process is completed">Process is completed</option>
+            </select>
+            <label for="description">Add Description</label>
+            <textarea id="description" name="description"></textarea>
+            <label for="photo">Add Photo</label>
+            <input class="custom-file-input" type="file" id="photo" name="photo" accept="image/*">
+            
+            <div class="button-container">
+                <button type="submit" id="updateButton">Update</button>
+                <div id="loadingIndicator" style="display: none; margin-left: 10px;">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+    @endif
 </main>
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/tracking.css') }}">
+<link rel="stylesheet" href="{{secure_asset('assets/css/tracking.css') }}">
+@endpush
+@push('scripts')
+<script>
+    document.getElementById('updateForm').addEventListener('submit', function (event) {
+        const button = document.getElementById('updateButton');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        button.disabled = true;
+        loadingIndicator.style.display = 'block';
+    });
+</script>
 @endpush
