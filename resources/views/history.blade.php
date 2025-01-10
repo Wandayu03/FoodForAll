@@ -36,14 +36,14 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <span>{{ __('history.status') }}</span>
-                                @if ($history->donations->status == "completed")    
-                                    <span class="status-box status-active">{{ $history->donations->status }}</span>
-                                @else
+                                @if ($history->donations->status != "completed" && Auth::user()->is_admin==0)    
                                     <span class="status-box status-active" style="background-color: gray">{{ $history->donations->status }}</span>
                                     <button id="payButton" class="btn btn-primary" onclick="window.location.href='{{ route('payment.process', ['id' => $history->donations->id]) }}'">
                                         {{ __('payment.pay_now') }}
                                     </button>
-                                @endif
+                                @else
+                                    <span class="status-box status-active">{{ $history->donations->status }}</span>
+                                @endifsd
 
                             </div>
                         </div>
