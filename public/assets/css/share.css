@@ -227,6 +227,7 @@ input {
     .order-detail-right {
         width: 90%;
         height: auto;
+        margin: 0 auto;
     }
 
     input {

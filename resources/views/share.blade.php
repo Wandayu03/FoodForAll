@@ -4,7 +4,7 @@
 
 @section('content')
 <div>
-    <div class="hero" style="background-image: url('{{ asset('assets/img/Hero-RentPage.png') }}')">
+    <div class="hero" style="background-image: url('{{asset('assets/img/Hero-RentPage.png') }}')">
         <div class="color"></div>
         <p>{{ __('share.every_contribution') }}<span>{{ __('share.make_difference') }}</span></p>
     </div>
@@ -13,7 +13,7 @@
     </div>
     <div class="order-detail">
         <p class="order-detail-title">Order Details</p>
-        <form action="{{ route('share.create') }}" method="POST">
+        <form action="{{ route('sharecreate') }}" method="POST">
             @csrf
             <div class="order-detail-all">
                 <div class="order-detail-left">
@@ -43,7 +43,9 @@
                         <input type="date" name="distribution_date" required>
                     </div>
                     <div class="distribution-location">
-                        <p>{{ __('share.distribution_location') }}
+
+                        <p>{{ __('share.distribution_location') }}</p>
+
                         <input type="text" placeholder="Example: orphanages or street workers like scavengers" name="distribution_address" required>
                     </div>
                 </div>
@@ -59,6 +61,6 @@
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/share.css') }}">
+<link rel="stylesheet" href="{{secure_asset('assets/css/share.css') }}">
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 @endpush

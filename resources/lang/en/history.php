@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'history' => 'History',
+    'history' => 'Trasanction Histories',
     'filter' => 'Filter',
     'all' => 'All',
     'donation' => 'Donation',
@@ -10,5 +10,5 @@ return [
     'view' => 'View',
     'no_share_details' => 'No share details available.',
     'made_donation' => 'You have made a donation of Rp.',
-    'pay_now' => 'pay now',
+    'pay_now' => 'Pay Now',
 ];

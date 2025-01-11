@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'history' => 'Riwayat',
+    'history' => 'Riwayat Trasaksi',
     'filter' => 'Filter',
     'all' => 'Semua',
     'donation' => 'Donasi',
@@ -10,5 +10,5 @@ return [
     'view' => 'Lihat',
     'no_share_details' => 'Tidak ada detail berbagi tersedia.',
     'made_donation' => 'Anda telah melakukan donasi sebesar Rp.',
-    'pay_now' => 'bayar sekarang',
+    'pay_now' => 'Bayar Sekarang',
 ];

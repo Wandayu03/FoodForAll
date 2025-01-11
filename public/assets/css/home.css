@@ -58,22 +58,14 @@
 }
 
 .fitur {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 30px;
-    align-items: center; 
     background-color: #e8c872; 
     padding: 50px;
-    color: #000;
     font-family: "Varela Round", sans-serif;
-    height: 680px;
-    padding-bottom: 500px;
 }
   
 .header {
-    margin-bottom: 0px;
     text-align: right;
-    margin-top: 100px;
+    margin-left: 40px;
 }
   
 .title {
@@ -90,9 +82,8 @@
 
 .content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 20px;
-    height: 412px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    grid-gap: 20px;
     background-color: #e8c872; 
 }
 
@@ -103,15 +94,12 @@
 }
   
 .card {
-    margin-top: 30px;
-    background: #f8f9f9; 
+    background-color: #f8f9f9;
+    color: #fff;
     border-radius: 10px;
     padding: 20px;
-    text-align: left;
+    font-size: 14px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 40px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     text-align: center;
 }
@@ -131,6 +119,7 @@
     line-height: 1.6;
     text-align: justify;
     font-family: "Varela Round", sans-serif;
+    color: #000;
 }
 
 .card a {
@@ -145,21 +134,6 @@
     color: #e8c872; 
     text-decoration: underline; 
 }
-  
-@media (max-width: 768px) {
-    .title {
-      font-size: 40px;
-    }
-  
-    .subtitle {
-      font-size: 16px;
-    }
-  
-    .card-title {
-      font-size: 28px;
-    }
-}
-
 
 .about-us-home {
     position: relative;
@@ -252,5 +226,211 @@ span a{
     height: 20px;
 }
   
-  
+@media (max-width: 768px) {
+    .col {
+        padding-top: 50px;
+        height: auto;
+    }
+
+    .col h1 {
+        font-size: 30px;
+    }
+
+    .col h2 {
+        font-size: 10px;
+    }
+
+    .mt-4 a {
+        width: 150px;
+        height: 60px;
+        line-height: 40px;
+        margin-bottom: 30px;
+    }
+
+    .fitur {
+        padding: 20px;
+        background-color: #E8C872;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .header {
+        text-align: center;
+    }
+
+    .title {
+        font-size: 36px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    .content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-gap: 10px;
+    }
+
+    .icon {
+        height: 80px;
+        width: 100px;
+    }
+
+    .card-title {
+        font-size: 24px;
+    }
+
+    .card-description {
+        font-size: 14px;
+    }
+
+    .card a {
+        font-size: 16px;
+    }
+
+    .about-us-home {
+        padding: 20px;
+        height: auto;
+        padding-top: 50px;
+    }
+
+    .about-us-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .text-content {
+        text-align: center;
+    }
+
+    .welcome-text {
+        font-size: 24px;
+    }
+
+    .description {
+        font-size: 16px;
+    }
+
+    .image {
+        max-width: 300px;
+        padding-left: 0;
+        margin-top: 20px;
+    }
+
+    .button {
+        width: 150px;
+        height: 50px;
+    }
+
+    span a {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .col {
+        padding-top: 138px;
+        height: 596px;
+    }
+
+    .col h1 {
+        font-size: 60px;
+    }
+
+    .col h2 {
+        font-size: 18px;
+    }
+
+    .mt-4 a {
+        width: 191px;
+        height: 74px;
+        line-height: 55px;
+    }
+
+    .fitur {
+        gap: 30px;
+        align-items: center; 
+        padding: 50px;
+        display: flex;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .header {
+        text-align: left;
+        margin-top: 100px;
+    }
+
+    .title {
+        font-size: 70px;
+    }
+
+    .subtitle {
+        font-size: 18px;
+    }
+
+    .content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+        grid-gap: 10px;
+    }
+
+    .icon {
+        height: 100px;
+        width: 130px;
+    }
+
+    .card-title {
+        font-size: 32px;
+    }
+
+    .card-description {
+        font-size: 15px;
+    }
+
+    .card a {
+        font-size: 20px;
+    }
+
+    .about-us-home {
+        padding: 50px;
+        height: 680px;
+        padding-top: 200px;
+    }
+
+    .about-us-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .text-content {
+        text-align: left;
+    }
+
+    .welcome-text {
+        font-size: 40px;
+    }
+
+    .description {
+        font-size: 20px;
+    }
+
+    .image {
+        max-width: 558px;
+        padding-left: 50px;
+    }
+
+    .button {
+        width: 212px;
+        height: 74px;
+    }
+
+    span a {
+        font-size: 20px;
+    }
+}
 

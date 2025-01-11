@@ -19,7 +19,7 @@
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/paymentdetail.css') }}">
+<link rel="stylesheet" href="{{secure_asset('assets/css/paymentdetail.css') }}">
 @endpush
 
 @push('scripts')

@@ -21,6 +21,9 @@
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4">
                         <a class="nav-link active" aria-current="page" href="{{ route('about') }}">@lang('navbar.about')</a>
                     </li>
+                    <li class="nav-item px-3 px-lg-0 py-1 py-lg-4">
+                        <a class="nav-link active" aria-current="page" href="{{ route('support') }}">@lang('navbar.contact')</a>
+                    </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4 dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ __('navbar.contribute') }}
@@ -32,10 +35,11 @@
                         </ul>
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4">
+                        @if (Auth::check() && Auth::user()->is_admin==1)
+                        <a class="nav-link active" aria-current="page" href={{ route('manage', ['type'=>'all']) }}>Manage</a>
+                        @else
                         <a class="nav-link active" aria-current="page" href={{ route('history', ['type'=>'all']) }}>@lang('navbar.history')</a>
-                    </li>
-                    <li class="nav-item px-3 px-lg-0 py-1 py-lg-4">
-                        <a class="nav-link active" aria-current="page" href="{{ route('support') }}">@lang('navbar.contact')</a>
+                        @endif   
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4 dropdown">
                         <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -50,6 +54,7 @@
                         <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                         @guest
                             <li><a class="dropdown-item" href="{{ route('register') }}">@lang('navbar.register')</a></li>
+                            <li><a class="dropdown-item" href="{{ route('login') }}">@lang('navbar.login')</a></li>
                         @endguest
                         @auth
                             <li><a class="dropdown-item" href="{{ route('logout') }}">@lang('navbar.logout')</a></li>

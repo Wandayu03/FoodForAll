@@ -9,7 +9,7 @@
     </div>
     <div class="all-wrapper">
         <!-- Form mengirim Data -->
-        <form action="{{ route('donation.create') }}" method="POST">
+        <form action="{{ rl('/tracking/{id}') }}" method="POST">
             @csrf
             <!-- Pilih jumlah donasi -->
             <div class="choose-price">
@@ -49,7 +49,7 @@
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/donate.css') }}">
+<link rel="stylesheet" href="{{secure_asset('assets/css/donate.css') }}">
 @endpush
 
 @push('scripts')

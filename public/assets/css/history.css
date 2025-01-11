@@ -42,19 +42,15 @@ span {
     color: white;
     border: none;
     /* padding: 10px 30px;  */
-    text-align: center; 
+
+    text-align: center;
     text-decoration: none;
     display: inline-block;
-    cursor: pointer; 
-    transition: background-color 0.3s; 
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 #payButton:hover {
     background-color: #a66e38;
 }
 
-.fa-solid-fa-calendar-me-2{
-    span{
-        font-weight: 1px;
-    }
-}

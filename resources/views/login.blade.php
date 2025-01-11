@@ -6,8 +6,9 @@
     <title>Login</title>
     <link href="https://cdn.lineicons.com/5.0/lineicons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
+    <link rel="stylesheet" href="{{secure_asset('assets/css/login.css') }}">
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link rel="stylesheet" href="{{secure_asset('assets/css/login.css') }}">
 </head>
 <body>
 <div class="wrapper">
@@ -25,7 +26,7 @@
                            <span >{{$error}}</span> 
                         @endforeach</div><br>
                     @endif
-                    <form action="{{ url('login') }}" method="POST">
+                    <form action="{{ route('login') }}" method="POST">
                         @csrf
                         <div class="input-field">
                             <input type="email" class="input" id="email" name="email" required autocomplete="off">
