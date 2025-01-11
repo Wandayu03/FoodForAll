@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg py-4 py-lg-0 shadow">
         <div class="container px-4">
-            <img src="{{asset('assets/img/Logo FoodFor All.png') }}" alt="">
+            <a href="{{ route('home') }}">
+                <img src="{{ asset('assets/img/Logo FoodFor All.png') }}" alt="Logo" style="cursor: pointer;">
+            </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#top-navbar" aria-controls="top-navbar">
                 <i class="lni lni-dashboard-square-1"></i>
             </button>
@@ -50,13 +52,13 @@
                             <li><a class="dropdown-item" href="{{ route('register') }}">@lang('navbar.register')</a></li>
                         @endguest
                         @auth
-                            <li><a class="dropdown-item" href="{{ route('logout') }}">@lang('navbar.')</a></li>
+                            <li><a class="dropdown-item" href="{{ route('logout') }}">@lang('navbar.logout')</a></li>
                         @endauth
                         </ul>
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4 dropdown">
                         <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="ms-1">Lang</span>
+                            <span class="ms-1">Language</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="langDropdown">
                             <li><a class="dropdown-item" href="{{ route('set-locale', 'en') }}">English</a></li>

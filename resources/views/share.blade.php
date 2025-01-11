@@ -43,7 +43,7 @@
                         <input type="date" name="distribution_date" required>
                     </div>
                     <div class="distribution-location">
-                        <p>{{ __('share.distribution_location') }}/p>
+                        <p>{{ __('share.distribution_location') }}
                         <input type="text" placeholder="Example: orphanages or street workers like scavengers" name="distribution_address" required>
                     </div>
                 </div>

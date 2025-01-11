@@ -8,6 +8,7 @@
 .min-heigt {
     min-height: 70vh;
 }
+
 .status-box {
     font-size: 12px;
     padding: 10px 25px;
@@ -31,4 +32,29 @@
 
 span {
     font-size: 18px;
+}
+
+#payButton {
+    font-size: 12px;
+    padding: 10px 25px;
+    border-radius: 5px;
+    background-color: #597db6;
+    color: white;
+    border: none;
+    /* padding: 10px 30px;  */
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+}
+
+#payButton:hover {
+    background-color: #a66e38;
+}
+
+.fa-solid-fa-calendar-me-2{
+    span{
+        font-weight: 1px;
+    }
 }

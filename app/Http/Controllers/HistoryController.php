@@ -7,10 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HistoryController extends Controller
-{
+{   
+    // public function showForm()
+    // {
+    //     return view('payment');
+    // }
     public function getHistory($type){
         $id = Auth::user()->id;
         $query = History::where('user_id', $id);
+
+        $currentFilter = $type;
 
         if ($type == 'share') {
             $query->with('shares');
@@ -24,9 +30,9 @@ class HistoryController extends Controller
             $query->where('activity_type', $type);
         }
     
-        $histories = $query->paginate(5); 
+        $histories = $query->orderBy('created_at', 'desc')->paginate(5); 
     
-        return view('history', ['userId' => $id, 'histories' => $histories]);
+        return view('history', ['userId' => $id, 'histories' => $histories, 'currentFilter' => $currentFilter]);
 
     }
 }

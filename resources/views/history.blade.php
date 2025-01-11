@@ -10,10 +10,10 @@
             <div>
                 <label for="filter" class="form-label me-2">{{ __('history.filter') }}</label>
                 <select id="filter" class="form-select d-inline-block w-auto">
-                    <option value="all">---</option>
-                    <option value="all">{{ __('history.all') }}</option>
-                    <option value="donation">{{ __('history.donation') }}</option>
-                    <option value="share">{{ __('history.share') }}</option>
+                    <!-- <option value="all" {{ $currentFilter == 'all' ? 'selected' : '' }}>---</option> -->
+                    <option value="all" {{ $currentFilter == 'all' ? 'selected' : '' }}>{{ __('history.all') }}</option>
+                    <option value="donation" {{ $currentFilter == 'donation' ? 'selected' : '' }}>{{ __('history.donation') }}</option>
+                    <option value="share" {{ $currentFilter == 'share' ? 'selected' : '' }}>{{ __('history.share') }}</option>
                 </select>
             </div>
         </div>
@@ -36,7 +36,13 @@
                                     <span class="status-box status-active">{{ $history->donations->status }}</span>
                                 @else
                                     <span class="status-box status-active" style="background-color: gray">{{ $history->donations->status }}</span>
+                                    <!-- <a href="{{ route('payment.process', ['id' => $history->donations->id]) }}" class="btn btn-primary mt-2">{{ __('history.pay_now') }}</a> -->
+                                    <!-- <button class="btn btn-primary mt-2" onclick="window.location.href='{{ route('payment.process', ['id' => $history->donations->id]) }}'">{{ __('history.pay_now') }}</button> -->
+                                    <button id="payButton" class="btn btn-primary" onclick="window.location.href='{{ route('payment.process', ['id' => $history->donations->id]) }}'">
+                                        {{ __('payment.pay_now') }}
+                                    </button>
                                 @endif
+
                             </div>
                         </div>
                 </div>

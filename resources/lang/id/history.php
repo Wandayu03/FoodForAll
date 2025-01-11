@@ -10,4 +10,5 @@ return [
     'view' => 'Lihat',
     'no_share_details' => 'Tidak ada detail berbagi tersedia.',
     'made_donation' => 'Anda telah melakukan donasi sebesar Rp.',
+    'pay_now' => 'bayar sekarang',
 ];

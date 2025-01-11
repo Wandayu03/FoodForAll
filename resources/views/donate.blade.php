@@ -33,7 +33,7 @@
                 <p class="header-text">{{ __('donate.enter_own_amount') }}</p>
                 <div class="enter-price-detail">
                     <label for="custom-amount">Rp</label>
-                    <input type="number" name="amount" placeholder="350000" required>
+                    <input type="number" id="custom-amount" name="amount" placeholder="350000" required>
                 </div>
                 <p class="notes">{{ __('donate.minimum_donation') }}</p>
             </div>
