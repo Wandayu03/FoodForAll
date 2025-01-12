@@ -8,7 +8,7 @@ return [
     'number_of_servings' => 'Jumlah Porsi yang Diharapkan',
     'number_of_servings_placeholder' => 'Contoh: 100',
     'budget_donation' => 'Anggaran/Donasi',
-    'budget_placeholder' => 'Contoh: 350.000',
+    'budget_placeholder' => 'Min: 1000',
     'distribution_date' => 'Tanggal Distribusi',
     'distribution_location' => 'Lokasi Distribusi',
     'location_placeholder' => 'Contoh: panti asuhan atau pekerja jalanan seperti pemulung',

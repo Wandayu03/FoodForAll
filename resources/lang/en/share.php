@@ -8,7 +8,7 @@ return [
     'number_of_servings' => 'Expected Number of Servings',
     'number_of_servings_placeholder' => 'Example: 100',
     'budget_donation' => 'Budget/Donation',
-    'budget_placeholder' => 'Example: 350,000',
+    'budget_placeholder' => 'Min: 1000',
     'distribution_date' => 'Distribution Date',
     'distribution_location' => 'Distribution Location',
     'location_placeholder' => 'Example: orphanage or street workers like scavengers',

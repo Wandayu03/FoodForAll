@@ -36,7 +36,7 @@
                 <div class="order-detail-right">
                     <div class="budget-donation">
                         <p>{{ __('share.budget_donation') }}</p>
-                        <input type="number" placeholder="Example: 350.000" name="budget" required>
+                        <input type="number" placeholder="Min: 10000" name="budget" required>
                     </div>
                     <div class="distribution-date">
                         <p>{{ __('share.distribution_date') }}</p>

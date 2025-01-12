@@ -178,22 +178,29 @@ class PaymentController extends Controller
     // }
     
 
-    public function processPayment($id)
+    public function processPayment($type, $id)
 {
-    $donation = Donation::findOrFail($id);
 
-    $existingPayment = Payment::where('donation_id', $donation->id)
-                               ->where('status', 'pending')
-                               ->first();
+    $existingPayment = null;
+
+    if($type=="donation"){
+        $existingPayment = Payment::where('donation_id', $id)
+        ->where('status', 'pending')
+        ->first();
+    }else{
+        $existingPayment = Payment::where('share_id', $id)
+        ->where('status', 'pending')
+        ->first();
+    }
 
     if ($existingPayment) {
         // Inform the user that a payment is already pending
-        Log::info('Existing pending payment found for donation ID ' . $donation->id);
+        Log::info('Existing pending payment found for' . $id);
         // return redirect()->route('history', ['type' => 'donation'])
                         //  ->with('error', 'A payment for this transaction is already pending. Please complete or cancel it before trying again.');
     }
 
-    if ($donation->status == 'pending') {
+    if ($existingPayment->status == 'pending') {
 
         Config::$serverKey = env('MIDTRANS_SERVER_KEY');
         Config::$isProduction = false;  // Ubah sesuai lingkungan Anda
@@ -202,11 +209,11 @@ class PaymentController extends Controller
 
         
 
-        $uniqueOrderId = 'DONATION-' . $donation->id . '-' . time(); // or use uniqid()
+        $uniqueOrderId = 'DONATION-' . $existingPayment->id . '-' . time(); // or use uniqid()
 
         $transactionDetails = [
             'order_id' => $uniqueOrderId,
-            'gross_amount' => $donation->amount,
+            'gross_amount' => $existingPayment->amount,
         ];
 
         $customerDetails = [
@@ -219,17 +226,29 @@ class PaymentController extends Controller
             'customer_details' => $customerDetails,
         ]);
 
-        $payment = Payment::create([
-            'user_id' => Auth::id(),
-            'donation_id' => $donation->id,
-            'transaction_id' => $transactionDetails['order_id'],
-            'activity_type' => 'donation',
-            'amount' => $donation->amount,
-            'status' => 'pending',
-            'snap_token' => $snapToken
-        ]);
+        if($type=="donation"){
+            $payment = Payment::create([
+                'user_id' => Auth::id(),
+                'donation_id' => $id,
+                'transaction_id' => $transactionDetails['order_id'],
+                'activity_type' => 'donation',
+                'amount' => $existingPayment->amount,
+                'status' => 'pending',
+                'snap_token' => $snapToken
+            ]);
+        }else{
+            $payment = Payment::create([
+                'user_id' => Auth::id(),
+                'share_id' => $id,
+                'transaction_id' => $transactionDetails['order_id'],
+                'activity_type' => 'donation',
+                'amount' => $existingPayment->amount,
+                'status' => 'pending',
+                'snap_token' => $snapToken
+            ]);
+        }
 
-        return view('payment', ['snapToken' => $snapToken, 'donation' => $donation, 'payment' => $payment]);
+        return view('payment', ['snapToken' => $snapToken, 'donation' => $existingPayment, 'payment' => $payment]);
     }
 
     return redirect()->route('history', ['type' => 'donation'])->with('error', 'Donation payment is not pending.');

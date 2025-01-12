@@ -46,7 +46,7 @@ Route::post('/share-a-meal', [ShareController::class, 'store'])->name('sharecrea
 Route::get( '/payment',  [PaymentController::class, 'showForm'])->name('payment.show');
 Route::post('/payment/notification', [PaymentController::class, 'paymentNotification'])->name('payment.notification');
 // Route::get('/payment/process/{id}', [PaymentController::class, 'processPayment'])->name('payment.process');
-Route::get('/payment/process/{id}', [PaymentController::class, 'processPayment'])->name('payment.process')->middleware('auth');
+Route::get('/payment/process/{type}/{id}', [PaymentController::class, 'processPayment'])->name('payment.process')->middleware('auth');
 Route::get('/payment/success/{transaction_id}', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
 
 Route::get('/about', function () {
