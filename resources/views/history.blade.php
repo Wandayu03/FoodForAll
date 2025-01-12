@@ -78,7 +78,7 @@
                             </div>
                             <div>
                                 <span>{{ __('history.status') }}</span>
-                                @if ($history->shares->status == "completed")    
+                                @if ($history->shares->payment->status == "completed")    
                                     <span class="status-box status-active">{{ $history->shares->status }}</span>
                                 @else
                                     <span class="status-box status-active" style="background-color: gray">{{ $history->shares->status }}</span>
