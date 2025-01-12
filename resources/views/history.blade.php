@@ -78,11 +78,11 @@
                             </div>
                             <div>
                                 <span>{{ __('history.status') }}</span>
-                                @if ($history->shares->payment->status == "completed")    
+                                @if ($history->shares->payment->status == "success")    
                                     <span class="status-box status-active">{{ $history->shares->status }}</span>
                                 @else
                                     <span class="status-box status-active" style="background-color: gray">{{ $history->shares->status }}</span>
-                                    @if (Auth::user()->is_admin == 0 && $history->shares->status == "pending") <!-- Check if the user is not admin and the share is pending -->
+                                    @if (Auth::user()->is_admin == 0) <!-- Check if the user is not admin and the share is pending -->
                                         <button id="payButton" class="btn btn-primary" onclick="window.location.href='{{ route('payment.process', ['id' => $history->shares->id]) }}'">
                                         {{ __('payment.pay_now') }}
                                         </button>
