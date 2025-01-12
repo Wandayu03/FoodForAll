@@ -48,5 +48,5 @@
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{secure_asset('assets/css/about.css') }}">
+<link rel="stylesheet" href="{{asset('assets/css/about.css') }}">
 @endpush

@@ -18,18 +18,6 @@ class HistoryController extends Controller
         $query = History::where('user_id', $id);
 
         $currentFilter = $type;
-        if ($type != "all") {
-            $query->where('activity_type', $type);
-        }
-    
-        $histories = $query->paginate(5); 
-    
-        return view('history', ['histories' => $histories]);
-
-    }
-
-    public function getAll($type){
-        $query = History::query();
         
         if ($type != "all") {
             $query->where('activity_type', $type);
@@ -37,6 +25,21 @@ class HistoryController extends Controller
     
         $histories = $query->orderBy('created_at', 'desc')->paginate(5); 
     
-        return view('history', ['histories' => $histories]);
+        return view('history', ['histories' => $histories, 'currentFilter' => $currentFilter]);
+
+    }
+
+    public function getAll($type){
+        $query = History::query();
+
+        $currentFilter = $type;
+
+        if ($type != "all") {
+            $query->where('activity_type', $type);
+        }
+    
+        $histories = $query->orderBy('created_at', 'desc')->paginate(5); 
+    
+        return view('history', ['histories' => $histories, 'currentFilter' => $currentFilter]);
     }
 }

@@ -434,3 +434,7 @@ span a{
     }
 }
 
+.btn.btn-primary.btn-lg {
+    padding: 10px 20px; 
+    white-space: nowrap; 
+}

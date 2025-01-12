@@ -66,5 +66,5 @@
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{secure_asset('assets/css/home.css') }}">
+<link rel="stylesheet" href="{{asset('assets/css/home.css') }}">
 @endpush

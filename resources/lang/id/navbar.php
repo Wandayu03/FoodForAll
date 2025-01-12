@@ -10,5 +10,6 @@ return [
     'contact' => 'Kontak',
     'register' => 'Daftar',
     'logout' => 'Keluar',
-    'login' => 'Masuk'
+    'login' => 'Masuk',
+    'language' => 'Bahasa'
 ];

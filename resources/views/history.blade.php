@@ -82,6 +82,11 @@
                                     <span class="status-box status-active">{{ $history->shares->status }}</span>
                                 @else
                                     <span class="status-box status-active" style="background-color: gray">{{ $history->shares->status }}</span>
+                                    @if (Auth::user()->is_admin == 0 && $history->shares->status == "pending") <!-- Check if the user is not admin and the share is pending -->
+                                        <button id="payButton" class="btn btn-primary" onclick="window.location.href='{{ route('payment.process', ['id' => $history->shares->id]) }}'">
+                                        {{ __('payment.pay_now') }}
+                                        </button>
+                                    @endif
                                 @endif
                             </div>
                             <div class="view">
@@ -111,7 +116,7 @@
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{secure_asset('assets/css/history.css') }}">
+<link rel="stylesheet" href="{{asset('assets/css/history.css') }}">
 <script>
     document.getElementById('filter').addEventListener('change', function () {
         const type = this.value; 

@@ -63,7 +63,8 @@
                     </li>
                     <li class="nav-item px-3 px-lg-0 py-1 py-lg-4 dropdown">
                         <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="ms-1">Language</span>
+                            <!-- <span class="ms-1">Language</span> -->
+                            <span class="ms-1">@lang('navbar.language')</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="langDropdown">
                             <li><a class="dropdown-item" href="{{ route('set-locale', 'en') }}">English</a></li>

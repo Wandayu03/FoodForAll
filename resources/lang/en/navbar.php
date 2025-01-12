@@ -11,4 +11,5 @@ return [
     'register' => 'Register',
     'login' => 'Login',
     'logout' => 'Logout',
+    'language' => 'Language'
 ];
