@@ -1,12 +1,16 @@
 .payment-detail {
-    border: 2px solid #637A9F;
+    border: 2px solid #637a9f;
     border-radius: 8px;
     padding: 20px;
     margin: 5rem auto;
     background-color: #f8f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 400px;
-    text-align: center; 
+    text-align: center;
+}
+
+main {
+    min-height: 50vh;
 }
 
 h1 {
@@ -14,32 +18,32 @@ h1 {
     margin-bottom: 12px;
 }
 
-p {
+.payment-detail p {
     color: rgb(158, 151, 151);
     font-size: 18px;
     margin: 5px 0;
 }
 
-.price{
+#price {
     color: black;
     margin-top: 15px;
     font-weight: 700;
 }
 
 #payButton {
-    background-color: #637A9F;
+    background-color: #637a9f;
     color: white;
     border: none;
-    padding: 10px 30px; 
-    text-align: center; 
+    padding: 10px 30px;
+    text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px; 
+    font-size: 16px;
     font-weight: 800;
     margin-top: 15px;
-    cursor: pointer; 
-    border-radius: 10px; 
-    transition: background-color 0.3s; 
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s;
 }
 
 #payButton:hover {
